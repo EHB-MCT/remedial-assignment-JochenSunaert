@@ -1,0 +1,3 @@
+defense_name,level,unlocks_at_town_hall,build_cost,build_time_seconds,build_resource
+Firespitter,1,17,22500000,1296000,Gold
+Firespitter,2,17,23000000,1382400,Gold

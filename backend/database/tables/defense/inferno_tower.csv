@@ -1,0 +1,12 @@
+defense_name,level,unlocks_at_town_hall,build_cost,build_time_seconds,build_resource
+Inferno Tower,1,10,1000000,43200,gold
+Inferno Tower,2,10,1200000,86400,gold
+Inferno Tower,3,10,2400000,172800,gold
+Inferno Tower,4,11,3400000,216000,gold
+Inferno Tower,5,11,4200000,259200,gold
+Inferno Tower,6,12,6000000,432000,gold
+Inferno Tower,7,13,8000000,604800,gold
+Inferno Tower,8,14,9500000,648000,gold
+Inferno Tower,9,15,10000000,691200,gold
+Inferno Tower,10,16,11000000,691200,gold
+Inferno Tower,11,17,22000000,1339200,gold

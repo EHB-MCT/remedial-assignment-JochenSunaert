@@ -1,0 +1,8 @@
+defense_name,level,unlocks_at_town_hall,build_cost,build_time_seconds,build_resource
+Air Sweeper,1,6,200000,14400,gold
+Air Sweeper,2,6,300000,21600,gold
+Air Sweeper,3,7,450000,28800,gold
+Air Sweeper,4,8,800000,43200,gold
+Air Sweeper,5,9,1200000,86400,gold
+Air Sweeper,6,10,1900000,172800,gold
+Air Sweeper,7,11,3400000,259200,gold

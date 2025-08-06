@@ -1,0 +1,17 @@
+defense_name,level,unlocks_at_town_hall,build_cost,build_time_seconds,build_resource
+Hidden Tesla,1,7,250000,7200,gold
+Hidden Tesla,2,7,350000,10800,gold
+Hidden Tesla,3,7,500000,14400,gold
+Hidden Tesla,4,8,600000,21600,gold
+Hidden Tesla,5,8,800000,43200,gold
+Hidden Tesla,6,8,1200000,86400,gold
+Hidden Tesla,7,9,1400000,10800,gold
+Hidden Tesla,8,10,1600000,129600,gold
+Hidden Tesla,9,11,2100000,151200,gold
+Hidden Tesla,10,12,3000000,172800,gold
+Hidden Tesla,11,13,3100000,21600,gold
+Hidden Tesla,12,13,3700000,259200,gold
+Hidden Tesla,13,14,5100000,345600,gold
+Hidden Tesla,14,15,6500000,432000,gold
+Hidden Tesla,15,16,8200000,518400,gold
+Hidden Tesla,16,17,20500000,1296000,gold

@@ -9,7 +9,7 @@ const port = process.env.PORT || 3001;
 app.use(express.json());
 
 app.get('/test-db', async (req, res) => {
-  const { data, error } = await supabase.from('test').select('*');
+  const { data, error } = await supabase.from('defense_upgrades').select('*');
 
   if (error) {
     console.error('DB error:', error);

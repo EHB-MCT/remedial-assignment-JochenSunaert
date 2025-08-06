@@ -1,0 +1,16 @@
+defense_name,level,unlocks_at_town_hall,build_cost,build_time_seconds,build_resource
+Air Defense,1,4,22000,3600,gold
+Air Defense,2,4,90000,7200,gold
+Air Defense,3,5,210000,21600,gold
+Air Defense,4,6,500000,43200,gold
+Air Defense,5,7,800000,64800,gold
+Air Defense,6,8,1000000,86400,gold
+Air Defense,7,9,1750000,172800,gold
+Air Defense,8,10,2300000,216000,gold
+Air Defense,9,11,3400000,259200,gold
+Air Defense,10,12,5000000,345600,gold
+Air Defense,11,13,5600000,388800,gold
+Air Defense,12,14,6500000,432000,gold
+Air Defense,13,15,8000000,518400,gold
+Air Defense,14,16,9000000,604800,gold
+Air Defense,15,17,21000000,1332000,gold

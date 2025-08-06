@@ -1,0 +1,6 @@
+defense_name,level,unlocks_at_town_hall,build_cost,build_time_seconds,build_resource
+Inferno Artillery,1,17,0,0,gold
+Inferno Artillery,2,17,10000000,777600,Gold
+Inferno Artillery,3,17,14000000,950400,Gold
+Inferno Artillery,4,17,18000000,1123200,Gold
+Inferno Artillery,5,17,22000000,1296000,Gold

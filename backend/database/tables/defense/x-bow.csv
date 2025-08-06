@@ -1,0 +1,13 @@
+defense_name,level,unlocks_at_town_hall,build_cost,build_time_seconds,build_resource
+X-Bow,1,9,1000000,43200,gold
+X-Bow,2,9,1200000,86400,gold
+X-Bow,3,9,2400000,172800,gold
+X-Bow,4,10,2500000,259200,gold
+X-Bow,5,11,3900000,302400,gold
+X-Bow,6,12,5000000,345600,gold
+X-Bow,7,13,6000000,388800,gold
+X-Bow,8,13,7000000,432000,gold
+X-Bow,9,14,9000000,604800,gold
+X-Bow,10,15,9500000,756000,gold
+X-Bow,11,16,10000000,820800,gold
+X-Bow,12,17,21500000,1339200,gold

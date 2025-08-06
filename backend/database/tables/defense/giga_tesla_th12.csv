@@ -1,0 +1,6 @@
+defense_name,level,unlocks_at_town_hall,build_cost,build_time_seconds,build_resource
+Giga Tesla th12,1,12,0,0,N/A
+Giga Tesla th12,2,12,1500000,43200,Gold
+Giga Tesla th12,3,12,2000000,86400,Gold
+Giga Tesla th12,4,12,3000000,172800,Gold
+Giga Tesla th12,5,12,4000000,259200,Gold

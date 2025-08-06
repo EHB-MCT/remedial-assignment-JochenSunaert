@@ -1,0 +1,4 @@
+defense_name,level,unlocks_at_town_hall,build_cost,build_time_seconds,build_resource
+Multi Archer Tower,1,16,12000000,777600,Gold
+Multi Archer Tower,2,16,13000000,864000,Gold
+Multi Archer Tower,3,17,23000000,1332000,Gold

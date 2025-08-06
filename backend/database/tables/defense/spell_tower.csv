@@ -1,0 +1,4 @@
+defense_name,level,unlocks_at_town_hall,build_cost,build_time_seconds,build_resource
+Spell Tower,1,15,9000000,604800,Gold
+Spell Tower,2,15,11000000,691200,Gold
+Spell Tower,3,15,12000000,777600,Gold

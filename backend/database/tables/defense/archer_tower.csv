@@ -1,0 +1,22 @@
+defense_name,level,unlocks_at_town_hall,build_cost,build_time_seconds,build_resource
+Archer Tower,1,2,1000,15,gold
+Archer Tower,2,2,2000,120,gold
+Archer Tower,3,3,5000,1200,gold
+Archer Tower,4,4,20000,3600,gold
+Archer Tower,5,5,70000,5400,gold
+Archer Tower,6,5,80000,7200,gold
+Archer Tower,7,6,150000,10800,gold
+Archer Tower,8,7,200000,14400,gold
+Archer Tower,9,8,400000,18000,gold
+Archer Tower,10,8,460000,21600,gold
+Archer Tower,11,9,600000,25200,gold
+Archer Tower,12,10,700000,28800,gold
+Archer Tower,13,10,1000000,36000,gold
+Archer Tower,14,11,1100000,39600,gold
+Archer Tower,15,11,1300000,43200,gold
+Archer Tower,16,12,1600000,72000,gold
+Archer Tower,17,12,1800000,86400,gold
+Archer Tower,18,13,2000000,97200,gold
+Archer Tower,19,13,2200000,129600,gold
+Archer Tower,20,14,3000000,172800,gold
+Archer Tower,21,15,4000000,259200,gold

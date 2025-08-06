@@ -1,0 +1,8 @@
+defense_name,level,unlocks_at_town_hall,build_cost,build_time_seconds,build_resource
+Builder Hut,1,1,0,0,gems
+Builder Hut,2,14,4000000,259200,gold
+Builder Hut,3,14,5000000,345600,gold
+Builder Hut,4,14,7000000,432000,gold
+Builder Hut,5,15,8000000,518400,gold
+Builder Hut,6,16,9000000,604800,gold
+Builder Hut,7,17,21000000,1296000,gold

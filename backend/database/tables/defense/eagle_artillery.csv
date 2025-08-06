@@ -1,0 +1,8 @@
+defense_name,level,unlocks_at_town_hall,build_cost,build_time_seconds,build_resource
+Eagle Artillery,1,11,5000000,345600,gold
+Eagle Artillery,2,11,6000000,432000,gold
+Eagle Artillery,3,12,9000000,604800,gold
+Eagle Artillery,4,13,10000000,691200,gold
+Eagle Artillery,5,14,12000000,777600,gold
+Eagle Artillery,6,15,13000000,842400,gold
+Eagle Artillery,7,16,14000000,864000,gold

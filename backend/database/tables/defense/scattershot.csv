@@ -1,0 +1,7 @@
+defense_name,level,unlocks_at_town_hall,build_cost,build_time_seconds,build_resource
+Scattershot,1,13,8000000,604800,gold
+Scattershot,2,13,9000000,691200,gold
+Scattershot,3,14,11000000,734400,gold
+Scattershot,4,15,11500000,756000,gold
+Scattershot,5,16,12000000,777600,gold
+Scattershot,6,17,22500000,1368000,gold

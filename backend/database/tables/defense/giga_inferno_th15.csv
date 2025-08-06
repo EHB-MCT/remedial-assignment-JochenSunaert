@@ -1,0 +1,6 @@
+defense_name,level,unlocks_at_town_hall,build_cost,build_time_seconds,build_resource
+Giga Inferno th15,1,15,0,0,N/A
+Giga Inferno th15,2,15,4000000,259200,Gold
+Giga Inferno th15,3,15,5000000,345600,Gold
+Giga Inferno th15,4,15,6500000,432000,Gold
+Giga Inferno th15,5,15,8000000,518400,Gold

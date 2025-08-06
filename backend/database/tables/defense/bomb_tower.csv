@@ -1,0 +1,13 @@
+defense_name,level,unlocks_at_town_hall,build_cost,build_time_seconds,build_resource
+Bomb Tower,1,8,700000,43200,gold
+Bomb Tower,2,8,1000000,64800,gold
+Bomb Tower,3,9,1300000,86400,gold
+Bomb Tower,4,10,1800000,129600,gold
+Bomb Tower,5,11,1900000,151200,gold
+Bomb Tower,6,11,2000000,172800,gold
+Bomb Tower,7,12,4000000,259200,gold
+Bomb Tower,8,13,5000000,345600,gold
+Bomb Tower,9,14,6000000,388800,gold
+Bomb Tower,10,15,7000000,432000,gold
+Bomb Tower,11,16,8500000,561600,gold
+Bomb Tower,12,17,20000000,1296000,gold

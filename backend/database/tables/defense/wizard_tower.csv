@@ -1,0 +1,18 @@
+defense_name,level,unlocks_at_town_hall,build_cost,build_time_seconds,build_resource
+Wizard Tower,1,5,100000,3600,gold
+Wizard Tower,2,5,150000,5400,gold
+Wizard Tower,3,6,250000,14400,gold
+Wizard Tower,4,7,400000,28800,gold
+Wizard Tower,5,8,550000,36000,gold
+Wizard Tower,6,8,660000,43200,gold
+Wizard Tower,7,9,1000000,64800,gold
+Wizard Tower,8,10,1100000,72000,gold
+Wizard Tower,9,10,1300000,86400,gold
+Wizard Tower,10,11,2000000,108000,gold
+Wizard Tower,11,12,2500000,129600,gold
+Wizard Tower,12,13,2600000,151200,gold
+Wizard Tower,13,13,3000000,172800,gold
+Wizard Tower,14,14,4500000,259200,gold
+Wizard Tower,15,15,5500000,345600,gold
+Wizard Tower,16,16,8000000,486000,gold
+Wizard Tower,17,17,20000000,1296000,gold
