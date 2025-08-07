@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { SignUp, Login, HomePage } from "./pages";
 import BaseInputPage from './pages/BaseInputPage';
 import MainPage from "./pages/HomePage";
+import ProfileTab from './pages/ProfileTab';  // adjust the path if needed
 
 const App = () => {
   const [token, setToken] = useState(null);
@@ -52,6 +53,12 @@ const App = () => {
         path="/main"
         element={token && user ? <MainPage token={token} user={user} /> : <Navigate to="/" replace />}
       />
+
+      <Route
+        path="/profile"
+        element={token && user ? <ProfileTab user={user} /> : <Navigate to="/" replace />}
+      />
+
     </Routes>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const maxInstancesByType = {
   'Air Defense': 4,
@@ -23,10 +23,24 @@ const maxInstancesByType = {
   'Town Hall': 1,
 };
 
-
-const BaseInput = ({ type, onChange }) => {
+const BaseInput = ({ type, initialLevels = [], onChange }) => {
   const maxInstances = maxInstancesByType[type] || 10; // default max if not set
-  const [instances, setInstances] = useState([{ level: '' }]);
+
+  // Initialize instances from initialLevels or default to one empty instance
+  const [instances, setInstances] = useState(
+    initialLevels.length > 0
+      ? initialLevels.map(level => ({ level: level === 0 ? '' : String(level) }))
+      : [{ level: '' }]
+  );
+
+  // Sync if initialLevels changes from outside (e.g. on data load)
+  useEffect(() => {
+    setInstances(
+      initialLevels.length > 0
+        ? initialLevels.map(level => ({ level: level === 0 ? '' : String(level) }))
+        : [{ level: '' }]
+    );
+  }, [initialLevels]);
 
   const handleInstanceChange = (index, value) => {
     const updated = [...instances];
@@ -61,7 +75,6 @@ const BaseInput = ({ type, onChange }) => {
               min="1"
               value={instance.level}
               onChange={e => handleInstanceChange(index, e.target.value)}
-              
             />
           </label>
           {instances.length > 1 && (

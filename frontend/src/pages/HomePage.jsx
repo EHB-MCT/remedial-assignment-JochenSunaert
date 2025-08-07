@@ -18,7 +18,8 @@ const HomePage = ({ user, setToken, setUser }) => {
     <div>
       <h1>Welcome to the Home Page, {user?.user_metadata?.fullName || 'User'}</h1>
       <button onClick={handleLogout}>Logout</button>
-      <Link to="/base-input">Go to Base Input</Link>
+      <Link to="/base-input">Make your base</Link>
+      <Link to="/profile">Edit Your Profile / Base</Link> {/* Add this */}
     </div>
   );
 };
