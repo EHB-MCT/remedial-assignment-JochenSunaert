@@ -1,22 +1,26 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
-const HomePage = ({token}) => {
+const HomePage = ({ user, setToken, setUser }) => {
+  let navigate = useNavigate();
 
-    let navigate = useNavigate();
-    function handleLogout() {
-        
-        sessionStorage.removeItem("token"); // Clear the token from session storage
-        navigate("/")
-        
-    }
-    return (
-        <div>
-            <h1>Welcome to the Home Page, {token.user.user_metadata.fullName}</h1>
-            <button onClick={handleLogout}>Logout</button>
-            
-        
-        </div>
-    );
-}
+  function handleLogout() {
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("user");
+
+    setToken(null);
+    setUser(null);
+
+    navigate("/");
+  }
+
+  return (
+    <div>
+      <h1>Welcome to the Home Page, {user?.user_metadata?.fullName || 'User'}</h1>
+      <button onClick={handleLogout}>Logout</button>
+      <Link to="/base-input">Go to Base Input</Link>
+    </div>
+  );
+};
+
 export default HomePage;
