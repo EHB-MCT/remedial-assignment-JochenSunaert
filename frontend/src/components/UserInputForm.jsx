@@ -64,10 +64,27 @@ export default function UserInputForm({ user }) {
     <form onSubmit={handleSubmit}>
       <h2>Set up your base</h2>
 
-      <BaseInput type="Archer Tower" onChange={handleBaseChange} />
-      <BaseInput type="Cannon" onChange={handleBaseChange} />
-      <BaseInput type="X-Bow" onChange={handleBaseChange} />
-      <BaseInput type="Mortar" onChange={handleBaseChange} />
+<BaseInput type="Air Defense" onChange={handleBaseChange} />
+<BaseInput type="Air Sweeper" onChange={handleBaseChange} />
+<BaseInput type="Archer Tower" onChange={handleBaseChange} />
+<BaseInput type="Bomb Tower" onChange={handleBaseChange} />
+<BaseInput type="Builder Hut" onChange={handleBaseChange} />
+<BaseInput type="Cannon" onChange={handleBaseChange} />
+<BaseInput type="Eagle Artillery" onChange={handleBaseChange} />
+<BaseInput type="Fire Spitter" onChange={handleBaseChange} />
+<BaseInput type="Hidden Tesla" onChange={handleBaseChange} />
+<BaseInput type="Inferno Tower" onChange={handleBaseChange} />
+<BaseInput type="Monolith" onChange={handleBaseChange} />
+<BaseInput type="Mortar" onChange={handleBaseChange} />
+<BaseInput type="Multi Archer Tower" onChange={handleBaseChange} />
+<BaseInput type="Multi Gear Tower" onChange={handleBaseChange} />
+<BaseInput type="Ricochet Cannon" onChange={handleBaseChange} />
+<BaseInput type="Scattershot" onChange={handleBaseChange} />
+<BaseInput type="Spell Tower" onChange={handleBaseChange} />
+<BaseInput type="Wizard Tower" onChange={handleBaseChange} />
+<BaseInput type="X-Bow" onChange={handleBaseChange} />
+<BaseInput type="Town Hall" onChange={handleBaseChange} />
+
       {/* Add more BaseInput components as needed */}
 
       <button type="submit" disabled={isSaving} style={{ marginTop: '1rem' }}>
