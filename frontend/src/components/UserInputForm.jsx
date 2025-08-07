@@ -43,7 +43,12 @@ export default function UserInputForm({ user }) {
         return;
       }
 
-      const { error } = await supabase.from('user_base_data').insert(records);
+ const { data, error } = await supabase
+  .from('user_base_data')
+  .upsert(records, {
+    onConflict: ['user_id', 'type', 'instance']
+  });
+
 
       if (error) throw error;
 
