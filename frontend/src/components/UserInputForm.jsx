@@ -1,59 +1,59 @@
 import React, { useState } from 'react';
+import { supabase } from '../client';
 import BaseInput from './BaseInput';
 
-const UserInputForm = ({ user }) => {
+export default function UserInputForm({ user }) {
   const [baseData, setBaseData] = useState({});
-  const [builderCount, setBuilderCount] = useState(5);
-  const [goldPass, setGoldPass] = useState(false);
   const [statusMessage, setStatusMessage] = useState('');
+  const [isSaving, setIsSaving] = useState(false);
 
   const handleBaseChange = (type, levels) => {
-    setBaseData((prev) => ({
+    setBaseData(prev => ({
       ...prev,
       [type]: levels,
     }));
   };
 
-  const handleSubmit = async (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
     setStatusMessage('');
+    setIsSaving(true);
 
     try {
-      // 1. Save base data
-      const baseRes = await fetch('http://localhost:3001/api/userdata/base-data', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          user_id: user.id,
-          baseData,
-        }),
+      // Flatten baseData into array of records matching your DB columns
+      const records = [];
+
+      Object.entries(baseData).forEach(([type, levels]) => {
+        levels.forEach((level, idx) => {
+          if (level > 0) {  // Only save levels > 0
+            records.push({
+              user_id: user.id,
+              name: `${type} #${idx + 1}`, // You can customize this
+              type: type,
+              instance: idx + 1,
+              current_level: level,
+            });
+          }
+        });
       });
 
-      if (!baseRes.ok) throw new Error('Failed to save base data');
+      if (records.length === 0) {
+        setStatusMessage('Please enter at least one base instance.');
+        setIsSaving(false);
+        return;
+      }
 
-      // 2. Save user settings
-      const settingsRes = await fetch('http://localhost:3001/api/userdata/settings', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          user_id: user.id,
-          builder_count: builderCount,
-          gold_pass: goldPass,
-        }),
-      });
+      const { error } = await supabase.from('user_base_data').insert(records);
 
-      if (!settingsRes.ok) throw new Error('Failed to save settings');
+      if (error) throw error;
 
-      setStatusMessage('✅ Base and settings saved!');
-    } catch (err) {
-      console.error('Error saving data:', err);
-      setStatusMessage('❌ Error saving data');
+      setStatusMessage('✅ Base data saved successfully!');
+    } catch (error) {
+      setStatusMessage('❌ Error saving base data: ' + error.message);
+    } finally {
+      setIsSaving(false);
     }
-  };
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -65,37 +65,11 @@ const UserInputForm = ({ user }) => {
       <BaseInput type="Mortar" onChange={handleBaseChange} />
       {/* Add more BaseInput components as needed */}
 
-      <div style={{ marginTop: '2rem' }}>
-        <label>
-          Builder Count:
-          <input
-            type="number"
-            value={builderCount}
-            min={1}
-            max={6}
-            onChange={(e) => setBuilderCount(Number(e.target.value))}
-          />
-        </label>
-      </div>
-
-      <div>
-        <label>
-          Gold Pass:
-          <input
-            type="checkbox"
-            checked={goldPass}
-            onChange={(e) => setGoldPass(e.target.checked)}
-          />
-        </label>
-      </div>
-
-      <button type="submit" style={{ marginTop: '1rem' }}>
-        Save Base
+      <button type="submit" disabled={isSaving} style={{ marginTop: '1rem' }}>
+        {isSaving ? 'Saving...' : 'Save Base'}
       </button>
 
       {statusMessage && <p>{statusMessage}</p>}
     </form>
   );
-};
-
-export default UserInputForm;
+}

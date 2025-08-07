@@ -1,14 +1,3 @@
-// import UserInputForm from '../components/UserInputForm';
-
-// export default function BaseInput() {
-//   return (
-//     <div>
-//       <h2>Create Your Base</h2>
-//       <UserInputForm />
-//     </div>
-//   );
-// }
-
 import React, { useState } from 'react';
 
 const BaseInput = ({ type, onChange }) => {
@@ -18,17 +7,18 @@ const BaseInput = ({ type, onChange }) => {
     const updated = [...instances];
     updated[index].level = value;
     setInstances(updated);
-    onChange(type, updated.map((i) => parseInt(i.level) || 0));
+    onChange(type, updated.map(i => parseInt(i.level) || 0));
   };
 
   const addInstance = () => {
     setInstances([...instances, { level: '' }]);
+    onChange(type, [...instances, { level: '' }].map(i => parseInt(i.level) || 0));
   };
 
   const removeInstance = (index) => {
     const updated = instances.filter((_, i) => i !== index);
     setInstances(updated);
-    onChange(type, updated.map((i) => parseInt(i.level) || 0));
+    onChange(type, updated.map(i => parseInt(i.level) || 0));
   };
 
   return (
@@ -42,7 +32,8 @@ const BaseInput = ({ type, onChange }) => {
               type="number"
               min="1"
               value={instance.level}
-              onChange={(e) => handleInstanceChange(index, e.target.value)}
+              onChange={e => handleInstanceChange(index, e.target.value)}
+              required
             />
           </label>
           {instances.length > 1 && (
