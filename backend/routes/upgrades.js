@@ -3,20 +3,19 @@ const express = require('express');
 const router = express.Router();
 const supabase = require('../supabaseClient');
 
-// Helper: strip suffix like ' #1' from name
 function stripSuffix(name) {
   return name.replace(/\s#\d+$/, '');
 }
 
 router.get('/available', async (req, res) => {
-  const userId = req.query.userId; // or use req.user.id if you use auth middleware
+  const userId = req.query.userId;
 
   if (!userId) {
     return res.status(400).json({ error: 'Missing user ID' });
   }
 
   try {
-    // Step 1: Get user's base data
+    // 1. Get user's base data (defense instances and levels)
     const { data: baseData, error: baseError } = await supabase
       .from('user_base_data')
       .select('name, current_level')
@@ -24,7 +23,7 @@ router.get('/available', async (req, res) => {
 
     if (baseError) throw baseError;
 
-    // Find Town Hall entry by matching name that starts with "Town Hall"
+    // 2. Find Town Hall level for filtering upgrades
     const townHallEntry = baseData.find(def => def.name.toLowerCase().startsWith('town hall'));
     const townHall = townHallEntry?.current_level;
 
@@ -32,7 +31,7 @@ router.get('/available', async (req, res) => {
       return res.status(400).json({ error: 'Town Hall not found in base data' });
     }
 
-    // Step 2: Get all upgrades up to user's Town Hall level
+    // 3. Get all upgrades up to user's Town Hall level
     const { data: allUpgrades, error: upgradesError } = await supabase
       .from('defense_upgrades')
       .select('*')
@@ -40,30 +39,40 @@ router.get('/available', async (req, res) => {
 
     if (upgradesError) throw upgradesError;
 
-    // Step 3: Determine which upgrades are available (consider multiple instances)
     const availableUpgrades = [];
 
+    // 4. For each upgrade, find matching defenses and check all levels above current_level
     allUpgrades.forEach(upg => {
-      // Get all player's defenses matching this defense_name (strip suffix)
-      const playerDefs = baseData.filter(def => stripSuffix(def.name) === upg.defense_name);
+      // Matching defenses for this upgrade's base name (case-insensitive)
+      const matchingDefs = baseData.filter(def => stripSuffix(def.name).toLowerCase() === upg.defense_name.toLowerCase());
 
-      if (playerDefs.length === 0) {
-        // Player has no instance of this defense, so show level 1 upgrade only
+      if (matchingDefs.length === 0) {
+        // User has no instance of this defense, so only show level 1 upgrades (new defense)
         if (upg.level === 1) {
-          availableUpgrades.push(upg);
+          availableUpgrades.push({
+            ...upg,
+            defense_instance: null,
+            current_level: 0
+          });
         }
         return;
       }
 
-      // For each defense instance, check if this upgrade is next level for that instance
-      playerDefs.forEach(def => {
-        if (upg.level === def.current_level + 1) {
-          availableUpgrades.push(upg);
+      matchingDefs.forEach(def => {
+        // Instead of only checking next level, add upgrades for all levels above current_level, including this upg.level
+        // So push this upgrade if upg.level > def.current_level
+        if (upg.level > def.current_level) {
+          availableUpgrades.push({
+            ...upg,
+            defense_instance: def.name,
+            current_level: def.current_level
+          });
         }
       });
     });
 
     res.json(availableUpgrades);
+
   } catch (err) {
     console.error('Error fetching upgrades:', err.message);
     res.status(500).json({ error: 'Failed to fetch available upgrades' });

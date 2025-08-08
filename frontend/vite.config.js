@@ -6,11 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': {
-        target: 'http://localhost:3001', // 👈 your backend
-        changeOrigin: true,
-        secure: false,
-      },
+      '/upgrades': 'http://localhost:3001', // replace with your backend URL & port
     },
   },
 });
