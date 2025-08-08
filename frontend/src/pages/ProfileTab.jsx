@@ -22,6 +22,7 @@ const DEFENSE_TYPES = [
   'Spell Tower',
   'Wizard Tower',
   'X-Bow',
+  'Town Hall',
 ];
 
 export default function ProfileTab({ user }) {
