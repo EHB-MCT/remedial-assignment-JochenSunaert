@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AvailableUpgrades from "../components/AvailableUpgrades";  // Adjust path if needed
+import EconomyTab from "../components/EconomyTab"; // Import the EconomyTab component
 
 const HomePage = ({ user, setToken, setUser }) => {
   let navigate = useNavigate();
@@ -24,6 +25,7 @@ const HomePage = ({ user, setToken, setUser }) => {
       <button onClick={handleLogout}>Logout</button>
       <Link to="/base-input">Make your base</Link>
       <Link to="/profile">Edit Your Profile / Base</Link>
+      <EconomyTab userId={userId}></EconomyTab>
       
       {/* Show Available Upgrades here */}
       {userId ? (
