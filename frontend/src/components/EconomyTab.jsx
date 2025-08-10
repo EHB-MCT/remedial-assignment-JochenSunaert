@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { applyGoldPassDiscount } from '../utils/economyUtils';
 
 export default function EconomyTab({ userId }) {
   const [economy, setEconomy] = useState(null);
@@ -6,16 +7,22 @@ export default function EconomyTab({ userId }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (!userId) {
+      setError("No user ID provided");
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
     setError(null);
 
-    fetch('http://localhost:3001/api/healthcheck')
-  .then(res => res.json())
-  .then(data => console.log(data))
-  .catch(err => console.error(err));
+    // Optional healthcheck - remove if unnecessary
+    fetch('/api/healthcheck')
+      .then(res => res.json())
+      .then(data => console.log("Healthcheck:", data))
+      .catch(err => console.error("Healthcheck error:", err));
 
-
-    fetch(`http://localhost:3001/api/economy/status?userId=${userId}`)
+    fetch(`/api/economy/status?userId=${userId}`)
       .then(res => {
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
@@ -23,8 +30,10 @@ export default function EconomyTab({ userId }) {
         return res.json();
       })
       .then(data => {
-        console.log('Economy data:', data);
-        setEconomy(data);
+        console.log('Economy data before discount:', data);
+        const discountedEconomy = applyGoldPassDiscount(data);
+        console.log('Economy data after discount:', discountedEconomy);
+        setEconomy(discountedEconomy);
         setLoading(false);
       })
       .catch(err => {
@@ -38,6 +47,14 @@ export default function EconomyTab({ userId }) {
   if (error) return <p>Error loading economy data: {error}</p>;
   if (!economy) return <p>No economy data available.</p>;
 
+  const hoursTotal = Math.floor(economy.total_time_seconds / 3600);
+
+  // Prevent NaN if builders_count is 0 or undefined
+  const hoursWithBuilders =
+    economy.builders_count && economy.builders_count > 0
+      ? Math.floor(hoursTotal / economy.builders_count)
+      : 'N/A';
+
   return (
     <div>
       <h2>Economy Overview</h2>
@@ -45,7 +62,9 @@ export default function EconomyTab({ userId }) {
       <p>Elixir: {economy.elixir_amount}</p>
       <p>Has Gold Pass: {economy.has_gold_pass ? 'Yes' : 'No'}</p>
       <p>Gold Needed to Max: {economy.total_gold_needed}</p>
-      <p>Total Time to Max: {Math.floor(economy.total_time_seconds / 3600)} hours</p>
+      <p>
+        Total Time to Max: {hoursTotal} hours, or {hoursWithBuilders} hours with {economy.builders_count || 1} builders
+      </p>
     </div>
   );
 }

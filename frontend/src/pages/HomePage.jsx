@@ -16,7 +16,6 @@ const HomePage = ({ user, setToken, setUser }) => {
     navigate("/");
   }
 
-  // Assuming your user object has user.id or similar unique user ID
   const userId = user?.id;
 
   return (
@@ -25,9 +24,11 @@ const HomePage = ({ user, setToken, setUser }) => {
       <button onClick={handleLogout}>Logout</button>
       <Link to="/base-input">Make your base</Link>
       <Link to="/profile">Edit Your Profile / Base</Link>
+      <button onClick={() => navigate("/user-economy-settings")}>
+        Edit User Economy Settings
+      </button>
       <EconomyTab userId={userId}></EconomyTab>
       
-      {/* Show Available Upgrades here */}
       {userId ? (
         <AvailableUpgrades userId={userId} />
       ) : (
