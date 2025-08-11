@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const supabase = require('../supabaseClient');
+const supabase = require('../database/supabaseClient');
 
 // Helper function to strip the instance suffix, e.g., "Mortar #1" -> "Mortar"
 function stripSuffix(name) {
