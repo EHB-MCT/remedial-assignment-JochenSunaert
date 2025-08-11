@@ -3,21 +3,26 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { SignUp, Login, HomePage } from "./pages";
 import BaseInputPage from './pages/BaseInputPage';
 import MainPage from "./pages/HomePage";
-import ProfileTab from './pages/ProfileTab';  // adjust the path if needed
+import ProfileTab from './pages/ProfileTab'; 
+import UserEconomySettings from './pages/UserEconomySettings'; 
 
 const App = () => {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // loading flag
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const savedToken = sessionStorage.getItem("token");
     const savedUser = sessionStorage.getItem("user");
     if (savedToken && savedUser) {
-      setToken(JSON.parse(savedToken));
-      setUser(JSON.parse(savedUser));
+      try {
+        setToken(JSON.parse(savedToken));
+        setUser(JSON.parse(savedUser));
+      } catch (err) {
+        console.error("Error parsing session storage data:", err);
+      }
     }
-    setLoading(false);  // loading done
+    setLoading(false);
   }, []);
 
   useEffect(() => {
@@ -31,8 +36,12 @@ const App = () => {
   }, [token, user]);
 
   if (loading) {
-    return <div>Loading...</div>; // or null, spinner etc.
+    return <div>Loading...</div>;
   }
+
+  // Debug: see what user object looks like before rendering
+  console.log("User object in App.jsx:", user);
+  console.log("User ID:", user?.id);
 
   return (
     <Routes>
@@ -43,7 +52,13 @@ const App = () => {
       {/* Protected */}
       <Route
         path="/home"
-        element={token && user ? <HomePage user={user} setToken={setToken} setUser={setUser} /> : <Navigate to="/" replace />}
+        element={
+          token && user ? (
+            <HomePage user={user} setToken={setToken} setUser={setUser} />
+          ) : (
+            <Navigate to="/" replace />
+          )
+        }
       />
       <Route
         path="/base-input"
@@ -53,12 +68,20 @@ const App = () => {
         path="/main"
         element={token && user ? <MainPage token={token} user={user} /> : <Navigate to="/" replace />}
       />
-
       <Route
         path="/profile"
         element={token && user ? <ProfileTab user={user} /> : <Navigate to="/" replace />}
       />
-
+      <Route
+        path="/user-economy-settings"
+        element={
+          token && user && user.id ? (
+            <UserEconomySettings userId={user.id} />
+          ) : (
+            <Navigate to="/" replace />
+          )
+        }
+      />
     </Routes>
   );
 };

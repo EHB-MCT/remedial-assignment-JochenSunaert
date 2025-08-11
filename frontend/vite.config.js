@@ -7,6 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/upgrades': 'http://localhost:3001', // replace with your backend URL & port
+      '/api': 'http://localhost:3001'
     },
   },
 });

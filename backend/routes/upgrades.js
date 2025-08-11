@@ -1,8 +1,8 @@
-// backend/routes/upgrades.js
 const express = require('express');
 const router = express.Router();
 const supabase = require('../supabaseClient');
 
+// Helper function to strip the instance suffix, e.g., "Mortar #1" -> "Mortar"
 function stripSuffix(name) {
   return name.replace(/\s#\d+$/, '');
 }
@@ -15,7 +15,7 @@ router.get('/available', async (req, res) => {
   }
 
   try {
-    // 1. Get user's base data (defense instances and levels)
+    // 1. Fetch the user's current defenses and their levels
     const { data: baseData, error: baseError } = await supabase
       .from('user_base_data')
       .select('name, current_level')
@@ -23,56 +23,53 @@ router.get('/available', async (req, res) => {
 
     if (baseError) throw baseError;
 
-    // 2. Find Town Hall level for filtering upgrades
     const townHallEntry = baseData.find(def => def.name.toLowerCase().startsWith('town hall'));
-    const townHall = townHallEntry?.current_level;
+    const townHallLevel = townHallEntry?.current_level;
 
-    if (!townHall) {
+    if (!townHallLevel) {
       return res.status(400).json({ error: 'Town Hall not found in base data' });
     }
 
-    // 3. Get all upgrades up to user's Town Hall level
-    const { data: allUpgrades, error: upgradesError } = await supabase
+    // 2. Fetch all possible defense upgrades, we'll filter this list later
+    const { data: allDefenseUpgrades, error: upgradesError } = await supabase
       .from('defense_upgrades')
-      .select('*')
-      .lte('unlocks_at_town_hall', townHall);
+      .select('*');
 
     if (upgradesError) throw upgradesError;
+    
+    const availableUpgradesList = [];
 
-    const availableUpgrades = [];
-
-    // 4. For each upgrade, find matching defenses and check all levels above current_level
-    allUpgrades.forEach(upg => {
-      // Matching defenses for this upgrade's base name (case-insensitive)
-      const matchingDefs = baseData.filter(def => stripSuffix(def.name).toLowerCase() === upg.defense_name.toLowerCase());
-
-      if (matchingDefs.length === 0) {
-        // User has no instance of this defense, so only show level 1 upgrades (new defense)
-        if (upg.level === 1) {
-          availableUpgrades.push({
-            ...upg,
-            defense_instance: null,
-            current_level: 0
-          });
+    // 3. Loop through the user's existing defenses to find their next upgrade
+    for (const defense of baseData) {
+        // Strip the suffix to find the general defense name (e.g., "Wizard Tower")
+        const defenseName = stripSuffix(defense.name);
+        
+        // Find the next available upgrade level
+        const nextLevel = defense.current_level + 1;
+        
+        // Find the upgrade details for the next level that is unlocked by the user's Town Hall
+        const upgradeDetails = allDefenseUpgrades.find(upg => 
+            upg.defense_name === defenseName && 
+            upg.level === nextLevel && 
+            upg.unlocks_at_town_hall <= townHallLevel
+        );
+        
+        // If an upgrade exists, add it to our list
+        if (upgradeDetails) {
+            availableUpgradesList.push({
+                defense_instance: defense.name,
+                current_level: defense.current_level,
+                available_upgrades: [{
+                    ...upgradeDetails,
+                    current_level: defense.current_level,
+                    status: 'not_started',
+                }]
+            });
         }
-        return;
-      }
+    }
 
-      matchingDefs.forEach(def => {
-        // Instead of only checking next level, add upgrades for all levels above current_level, including this upg.level
-        // So push this upgrade if upg.level > def.current_level
-        if (upg.level > def.current_level) {
-          availableUpgrades.push({
-            ...upg,
-            defense_instance: def.name,
-            current_level: def.current_level
-          });
-        }
-      });
-    });
-
-    res.json(availableUpgrades);
-
+    // Return the list of found upgrades
+    res.json(availableUpgradesList);
   } catch (err) {
     console.error('Error fetching upgrades:', err.message);
     res.status(500).json({ error: 'Failed to fetch available upgrades' });
