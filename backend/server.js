@@ -2,12 +2,12 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 
+
 const upgradesRouter = require('./routes/upgrades');
 const userBaseDataRouter = require('./routes/userBaseData');
 const economyRoutes = require('./routes/economy'); 
 const userEconomyRouter = require('./routes/userEconomy'); 
 
-const supabase = require('./supabaseClient');
 
 const app = express();
 const port = process.env.PORT || 3001;

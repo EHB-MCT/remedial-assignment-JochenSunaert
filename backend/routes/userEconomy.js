@@ -1,6 +1,10 @@
 const express = require('express');
 const supabase = require('../supabaseClient');
 const router = express.Router();
+const { startUpgrade } = require('../controllers/upgradeController');
+
+// The startUpgrade endpoint now points to the dedicated controller
+router.post('/start-upgrade', startUpgrade);
 
 // GET economy by userId
 router.get('/:userId', async (req, res) => {
