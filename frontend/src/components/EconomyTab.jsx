@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-export default function EconomyTab({ userId }) {
+// The refreshFlag prop is now accepted to trigger data re-fetching
+export default function EconomyTab({ userId, refreshFlag }) {
   const [economy, setEconomy] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -34,7 +35,7 @@ export default function EconomyTab({ userId }) {
         setError(err.message);
         setLoading(false);
       });
-  }, [userId]);
+  }, [userId, refreshFlag]); // The refreshFlag is added here to trigger a re-render on change
 
   if (loading) return <p>Loading economy data...</p>;
   if (error) return <p>Error loading economy data: {error}</p>;
