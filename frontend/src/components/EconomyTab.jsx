@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { applyGoldPassDiscount } from '../utils/economyUtils';
 
 export default function EconomyTab({ userId }) {
   const [economy, setEconomy] = useState(null);
@@ -16,12 +15,6 @@ export default function EconomyTab({ userId }) {
     setLoading(true);
     setError(null);
 
-    // Optional healthcheck - remove if unnecessary
-    fetch('/api/healthcheck')
-      .then(res => res.json())
-      .then(data => console.log("Healthcheck:", data))
-      .catch(err => console.error("Healthcheck error:", err));
-
     fetch(`/api/economy/status?userId=${userId}`)
       .then(res => {
         if (!res.ok) {
@@ -30,14 +23,14 @@ export default function EconomyTab({ userId }) {
         return res.json();
       })
       .then(data => {
-        console.log('Economy data before discount:', data);
-        const discountedEconomy = applyGoldPassDiscount(data);
-        console.log('Economy data after discount:', discountedEconomy);
-        setEconomy(discountedEconomy);
+        // Apply gold pass discount here if needed (or trust backend)
+        if (data.has_gold_pass) {
+          data.gold_amount = Math.floor(data.gold_amount); // or apply any logic if needed
+        }
+        setEconomy(data);
         setLoading(false);
       })
       .catch(err => {
-        console.error('Fetch error:', err);
         setError(err.message);
         setLoading(false);
       });
@@ -49,7 +42,6 @@ export default function EconomyTab({ userId }) {
 
   const hoursTotal = Math.floor(economy.total_time_seconds / 3600);
 
-  // Prevent NaN if builders_count is 0 or undefined
   const hoursWithBuilders =
     economy.builders_count && economy.builders_count > 0
       ? Math.floor(hoursTotal / economy.builders_count)
