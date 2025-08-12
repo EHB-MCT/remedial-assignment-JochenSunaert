@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const supabase = require('../supabaseClient');
+const supabase = require('../database/supabaseClient');
 
 
 router.post('/user-economy/start-upgrade', async (req, res) => {
