@@ -356,3 +356,20 @@ This project is licensed under the MIT License. For more information, see the `L
 ## 13\. Authors
 
   * [@Jochen Sunaert](https://github.com/JochenSunaert)
+
+
+## 13\. Acknowledgements
+
+- [Supabase](https://supabase.com/) for the backend database and authentication services.
+- [Express.js](https://expressjs.com/) for building the API.
+- [Node.js](https://nodejs.org/) for the runtime environment.
+- [PostgreSQL](https://www.postgresql.org/) as the database solution.
+- [OpenAI ChatGPT](https://openai.com/) for assistance in code generation and debugging.
+- [Awesome Readme Templates](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
+- [Awesome README](https://github.com/matiassingers/awesome-readme)
+- [How to write a Good readme](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
+- [HUser Authentication (React + Supabase](https://www.youtube.com/watch?v=qj9YexzvzTs&list=PLl6EcvA_AoxEU455Yi1JoYVwHfpHpNkAw)
+  
+- This project was built with the assistance of Gemini. Its collaborative support was instrumental in debugging, writing, and refining the core logic and user interface.
+
+- Special Thanks to Everaert Jan for guidance for this assignement.
