@@ -206,11 +206,30 @@ const AvailableUpgrades = ({ userId }) => {
 
   /**
    * Handles the upgrade process, starting a new upgrade and saving it to the database.
+   * Now, it first checks if the upgrade is possible and shows a toast message if not.
    * @param {object} upgrade The upgrade details.
    * @param {string} defenseInstanceName The name of the defense instance.
    */
   async function handleStartUpgrade(upgrade, defenseInstanceName) {
     if (!economy) return;
+
+    const cost = economy?.has_gold_pass ? Math.ceil(upgrade.build_cost * 0.8) : upgrade.build_cost;
+    const canAfford = (upgrade.build_resource === 'gold' && economy?.gold_amount >= cost) ||
+                      (upgrade.build_resource === 'elixir' && economy?.elixir_amount >= cost);
+    const isBuilderBusy = economy?.builders_count <= inProgressUpgrades.length;
+
+    // Check conditions and show a toast message if they are not met.
+    if (isBuilderBusy) {
+      toast.error("All your builders are busy!");
+      return;
+    }
+
+    if (!canAfford) {
+      toast.error(`Not enough ${upgrade.build_resource} to start this upgrade!`);
+      return;
+    }
+
+    // Proceed with the upgrade if all conditions pass
     const uniqueKey = `${defenseInstanceName}-${upgrade.id}`;
     setUpgradingKey(uniqueKey);
     toast.info("Starting upgrade...");
@@ -323,9 +342,6 @@ const AvailableUpgrades = ({ userId }) => {
                   const cost = economy?.has_gold_pass
                     ? Math.ceil(upg.build_cost * 0.8)
                     : upg.build_cost;
-                  const canAfford = (upg.build_resource === 'gold' && economy?.gold_amount >= cost) ||
-                                    (upg.build_resource === 'elixir' && economy?.elixir_amount >= cost);
-                  const isBuilderBusy = economy?.builders_count <= inProgressUpgrades.length;
 
                   return (
                     <li key={uniqueKey} className="flex items-center justify-between p-3 bg-gray-50 rounded-md">
@@ -340,12 +356,12 @@ const AvailableUpgrades = ({ userId }) => {
                         </p>
                       </div>
                       <button
+                        // The button is no longer disabled. The click handler will validate and show a toast if necessary.
                         onClick={() => handleStartUpgrade(upg, instance.defense_instance)}
-                        disabled={isUpgrading || isBuilderBusy || !canAfford}
                         className={`text-white font-semibold py-2 px-4 rounded-full transition-all duration-200 ${
-                          isUpgrading ? "bg-gray-400" :
-                          (isBuilderBusy || !canAfford) ? "bg-red-400 cursor-not-allowed" :
-                          "bg-green-500 hover:bg-green-600 shadow-md"
+                          isUpgrading 
+                            ? "bg-gray-400 cursor-not-allowed" 
+                            : "bg-green-500 hover:bg-green-600 shadow-md"
                         }`}
                       >
                         {isUpgrading ? "Starting..." : "Start Upgrade"}
