@@ -28,6 +28,17 @@ const AvailableUpgrades = ({ userId }) => {
 
   // useRef to hold the timer interval, so we can clear it when needed
   const timerRef = useRef(null);
+  
+  /**
+   * Helper function to calculate the discounted value if the user has a gold pass.
+   * The discount is 20% (multiplied by 0.8), and the result is rounded up to the nearest integer.
+   * @param {number} originalValue The original cost or time.
+   * @param {boolean} hasGoldPass Whether the user has the gold pass enabled.
+   * @returns {number} The discounted value.
+   */
+  const getDiscountedValue = (originalValue, hasGoldPass) => {
+    return hasGoldPass ? Math.ceil(originalValue * 0.8) : originalValue;
+  };
 
   /**
    * Helper function to format seconds into a more readable format (H:MM:SS)
@@ -213,9 +224,13 @@ const AvailableUpgrades = ({ userId }) => {
   async function handleStartUpgrade(upgrade, defenseInstanceName) {
     if (!economy) return;
 
-    const cost = economy?.has_gold_pass ? Math.ceil(upgrade.build_cost * 0.8) : upgrade.build_cost;
-    const canAfford = (upgrade.build_resource === 'gold' && economy?.gold_amount >= cost) ||
-                      (upgrade.build_resource === 'elixir' && economy?.elixir_amount >= cost);
+    // Apply the Gold Pass discount to both cost and time for client-side validation
+    const hasGoldPass = economy?.has_gold_pass;
+    const discountedCost = getDiscountedValue(upgrade.build_cost, hasGoldPass);
+    const discountedTime = getDiscountedValue(upgrade.build_time_seconds, hasGoldPass);
+
+    const canAfford = (upgrade.build_resource === 'gold' && economy?.gold_amount >= discountedCost) ||
+                     (upgrade.build_resource === 'elixir' && economy?.elixir_amount >= discountedCost);
     const isBuilderBusy = economy?.builders_count <= inProgressUpgrades.length;
 
     // Check conditions and show a toast message if they are not met.
@@ -245,6 +260,8 @@ const AvailableUpgrades = ({ userId }) => {
           upgradeId: upgrade.id,
           upgradeLevel: upgrade.level,
           defenseInstanceName,
+          // Sending discounted time to the backend for consistency, though backend should be source of truth
+          // buildTimeSeconds: discountedTime, 
         }),
       });
 
@@ -313,6 +330,9 @@ const AvailableUpgrades = ({ userId }) => {
       ) : (
         <div className="p-4 bg-white rounded-lg shadow-md text-center text-gray-500">
           <p>You have no upgrades in progress.</p>
+          <p className="mt-2">
+            This could mean all defenses are at max level, all builders are busy, or there are unplaced defenses.
+          </p>
         </div>
       )}
 
@@ -339,9 +359,11 @@ const AvailableUpgrades = ({ userId }) => {
                 {instance.available_upgrades.map((upg) => {
                   const uniqueKey = `${instance.defense_instance}-${upg.id}`;
                   const isUpgrading = upgradingKey === uniqueKey;
-                  const cost = economy?.has_gold_pass
-                    ? Math.ceil(upg.build_cost * 0.8)
-                    : upg.build_cost;
+                  
+                  // Use the new helper function to get discounted values
+                  const hasGoldPass = economy?.has_gold_pass;
+                  const discountedCost = getDiscountedValue(upg.build_cost, hasGoldPass);
+                  const discountedTime = getDiscountedValue(upg.build_time_seconds, hasGoldPass);
 
                   return (
                     <li key={uniqueKey} className="flex items-center justify-between p-3 bg-gray-50 rounded-md">
@@ -350,9 +372,9 @@ const AvailableUpgrades = ({ userId }) => {
                           Upgrade to level <span className="font-bold">{upg.level}</span>
                         </p>
                         <p className="text-sm text-gray-500">
-                          Cost: <span className="font-medium text-gray-700">{cost} {upg.build_resource}</span>
+                          Cost: <span className="font-medium text-gray-700">{discountedCost} {upg.build_resource}</span>
                           {" | "}
-                          Time: <span className="font-medium text-gray-700">{formatTime(upg.build_time_seconds)}</span>
+                          Time: <span className="font-medium text-gray-700">{formatTime(discountedTime)}</span>
                         </p>
                       </div>
                       <button
