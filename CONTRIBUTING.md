@@ -14,7 +14,8 @@ Contributions are welcome! Please follow these guidelines:
 4.  Make your changes. Ensure your code follows the [project conventions](./docs/CONVENTIONS.md).
 5.  Commit your changes using a descriptive commit message (`git commit -am 'feat: add new-feature'`). We follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification.
 6.  Push to the branch (`git push origin feature/new-feature`).
-7.  Create a new Pull Request against the `main` branch.
+7.  Create a new Pull Request against the `dev` branch.
+8.  Test if everything is working propperly, and if it is create a new Pull Request against the `main` branch.
 
 ## Code of Conduct
 

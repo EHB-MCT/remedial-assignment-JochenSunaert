@@ -1,8 +1,9 @@
-# Economy Simulation: A Resource Management Game
+# Clash of clans Web Simulation: A Resource Management Game
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-An application that simulates a resource-based economy, focusing on the management of defensive structures and user-driven upgrades. This is a full-stack web application with a **React frontend** and a **Node.js backend**, using a persistent **Supabase database** to track user progress, resources, and building levels.
+
+An application that simulates a resource-based economy, based on [Clash of clans](https://supercell.com/en/games/clashofclans/) focusing on the management of defensive structures and user-driven upgrades. This is a full-stack web application with a **React frontend** and a **Node.js backend**, using a persistent **Supabase database** to track user progress, resources, and building levels.
 
 ---
 
@@ -24,15 +25,15 @@ An application that simulates a resource-based economy, focusing on the manageme
 This project is a web-based simulation of a Clash of Clans-style economy. The user manages a "base" of defensive structures, each with a specific level. The central element of the simulation is the **economy**, where users can upgrade their defenses by spending in-game resources (gold and elixir). The system includes core simulation logic, such as:
 
 - **Build Timers**: Upgrades take a specific amount of time to complete.
-- **Gold Pass**: A premium in-game item that provides a time and cost discount on upgrades.
-- **Builder Count**: The number of builders a user has determines how many upgrades can be performed simultaneously.
+- **Gold Pass**: A premium in-game item that provides a 20% time and cost discount on upgrades.
+- **Builder Count**: The number of builders a user has determines how many upgrades can be performed simultaneously. (1-6 builders)
 
 ## Features
 
 - **User Authentication**: Secure user login and registration using Supabase.
-- **Dynamic Base Management**: Users can create, update, and manage their base layouts by adding and leveling up various defensive structures.
-- **Simulated Economy**: Tracks in-game resources (gold, elixir), builder count, and the user's gold pass status.
-- **Upgrade System**: Users can view available upgrades for their defenses and initiate them, with costs and timers dynamically calculated.
+- **Dynamic Base Management**: Users can recreate, update, and manage their in-game base layout by adding and leveling up various defensive structures.
+- **Simulated Economy**: Users receive currency (gold and elixer) based on time. and can select their builder count, and their gold pass status.
+- **Upgrade System**: Users can view available upgrades for their defenses and initiate them, with costs and timers calculated using the [Clash of clans wiki](https://clashofclans.fandom.com/wiki/Defensive_Buildings/Home_Village).
 - **Real-time Data Persistence**: All user and economy data is stored persistently in a Supabase database.
 - **Responsive UI**: A modular React frontend designed for a seamless user experience.
 
@@ -52,8 +53,8 @@ To get the project running locally, you'll need Node.js and a Supabase project. 
 
 ```bash
 # Clone, install dependencies, and run
-git clone <your-repo-url>
-cd <project-folder>
+git clone https://github.com/EHB-MCT/remedial-assignment-JochenSunaert.git
+
 
 # Install frontend dependencies
 cd frontend
@@ -63,12 +64,12 @@ npm install
 cd ../backend
 npm install
 
-# Set up your .env file in /backend, then start the servers
+# Set up your .env file in /backend, and the /client.js file in the /frontend/src then start the servers
 # (in two separate terminals)
 
 # Terminal 1: Backend
 cd backend
-node server.js
+nodemon server.js
 
 # Terminal 2: Frontend
 cd frontend
@@ -97,3 +98,6 @@ This project is licensed under the MIT License. See the [LICENSE](./LICENSE) fil
 ## Authors
 
 - [@Jochen Sunaert](https://github.com/JochenSunaert)
+
+### Guidance
+- Special thanks to **Everaert Jan** for guidance for this assignment.
