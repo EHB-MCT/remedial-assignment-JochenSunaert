@@ -1,21 +1,76 @@
 # Project Roadmap
 
-This document outlines the planned features and future direction for the project.
+This document outlines the current state, recent work, and the planned direction of the project.
 
-### Short-Term Goals
+---
 
--   **Implement Advanced Simulation Logic**: Add a worker process or cron job on the backend to handle build timers. This will allow upgrades to progress in real-time, even when the user is offline.
--   **Complete UI/UX Polish**: Refine the user interface, add animations for a better user experience, and ensure full responsiveness on all major screen sizes.
--   **Error Handling and Feedback**: Improve frontend and backend error handling to provide clearer feedback to the user (e.g., "Not enough gold," "All builders are busy").
+## 1. Recent Progress
 
-### Mid-Term Goals
+Based on recent commits, the following have been implemented or significantly improved:
 
--   **Expand Economy**: Introduce new resources (e.g., "Dark Elixir") and a market system for trading or purchasing resources.
--   **Data Visualization**: Add a dedicated dashboard with charts and graphs to visualize user progress, resource generation over time, and upgrade efficiency.
--   **Social Features**: Implement basic social features, such as viewing other users' bases or a leaderboard.
+* **Documentation Overhaul**
 
-### Long-Term Goals
+  * Split `README.md` into multiple structured documents for easier navigation and maintainability.
+  * Expanded **Getting Started** guide with full environment setup, Supabase config, and frontend/backend run instructions.
+  * Added `DATABASE_SCHEMA.md` and `API_REFERENCE.md` for backend table structures and API endpoints.
+  * Added inline JSDoc comments and code-level notes to improve maintainability in files like `HomePage.jsx`.
 
--   **Attack/Defense Simulation**: Introduce a simple combat mechanic where users can simulate attacks on a base to test its defensive layout.
--   **Gamification**: Add achievements, daily quests, and rewards to increase user engagement.
--   **Full TypeScript Migration**: Convert the entire JavaScript codebase (frontend and backend) to TypeScript for improved type safety and maintainability.
+* **User Economy Refactor**
+
+  * Restructured economy-related files into a dedicated folder.
+  * Added constants for economy rates and caps for easier tuning.
+  * Updated all imports to match the new structure.
+
+* **Frontend Comments & Clarity**
+
+  * Added detailed comments explaining routing, callbacks, and UX flow.
+  * Improved code readability for future contributors.
+
+---
+
+## 2. Current Features
+
+* **User Authentication**: Secure login and registration using Supabase.
+* **Dynamic Base Management**: Create, update, and manage base layouts with upgradeable defensive structures.
+* **Simulated Economy**: Tracks resources (gold, elixir), builder count, and gold pass status.
+* **Upgrade System**: Dynamic costs and timers for structure upgrades.
+* **Real-time Data Persistence**: Data stored in Supabase and synced across sessions.
+* **Responsive UI**: Modular React frontend designed for desktop and mobile.
+* **Developer Documentation**: Clear setup guides, API references, and schema docs for quick onboarding.
+
+---
+
+## 3. Short-Term Goals
+
+
+* **UI/UX Polish**
+  Add animations, improve layout responsiveness, and refine the overall visual design.
+
+* **Error Handling & Feedback**
+  Show clear in-app messages for common errors like resource shortages or busy builders.
+
+---
+
+## 4. Mid-Term Goals
+
+* **Expanded Economy**
+  Add new resources (e.g., Dark Elixir) and enable market trading or purchases.
+
+* **Data Visualization**
+  Implement a dashboard with charts and graphs for progress tracking and advanced economy insights.
+
+* **Social Features**
+  Add the ability to view other users’ bases and introduce leaderboards.
+
+---
+
+## 5. Long-Term Goals
+
+* **Attack/Defense Simulation**
+  Introduce basic combat mechanics to test base layouts.
+
+* **Gamification**
+  Add achievements, daily quests, and reward systems to increase engagement.
+
+* **Full TypeScript Migration**
+  Convert both frontend and backend to TypeScript for stronger type safety.
