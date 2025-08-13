@@ -14,6 +14,8 @@ All endpoints are prefixed with `/api`.
 
 ## General Endpoints
 
+### if running local, the server should be at ### `http://localhost:3001`
+
 ### `GET /api/healthcheck`
 
 * **Description**: Checks if the server is running.
@@ -32,7 +34,7 @@ All endpoints are prefixed with `/api`.
 * **Description**: Retrieves the full list of a user's defenses and their current levels.
 * **Query Parameters**:
 
-  * `userId` (string, required) — The user's unique ID.
+  * `?userId` (string, required) — The user's unique ID.
 * **Response**:
 
 ```json
@@ -49,7 +51,7 @@ All endpoints are prefixed with `/api`.
 * **Description**: Fetches all available upgrades for a user based on their base and Town Hall level.
 * **Query Parameters**:
 
-  * `userId` (string, required) — The user's unique ID.
+  * `?userId` (string, required) — The user's unique ID.
 * **Response**:
 
 ```json
