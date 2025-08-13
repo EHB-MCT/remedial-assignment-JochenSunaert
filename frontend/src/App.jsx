@@ -4,7 +4,7 @@ import { SignUp, Login, HomePage } from "./pages";
 import BaseInputPage from './pages/BaseInputPage';
 import MainPage from "./pages/HomePage";
 import ProfileTab from './pages/ProfileTab'; 
-import UserEconomySettings from '../components/UserEconomySettings/UserEconomySettings';
+import UserEconomySettings from './components/UserEconomySettings/UserEconomySettings';
 
 const App = () => {
   const [token, setToken] = useState(null);

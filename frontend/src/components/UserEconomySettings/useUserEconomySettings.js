@@ -13,7 +13,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
-import { supabase } from '../client.js'; // your app's frontend supabase client
+import { supabase } from '../../client.js'; // your app's frontend supabase client
 import {
   RESOURCE_CAP,
   GOLD_PRODUCTION_RATE_PER_SECOND,
