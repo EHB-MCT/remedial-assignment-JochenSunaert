@@ -11,12 +11,3 @@ module.exports = (sequelize, DataTypes) => {
   return Upgrade;
 };
 
-// models/UserEconomy.js
-module.exports = (sequelize, DataTypes) => {
-  const UserEconomy = sequelize.define('UserEconomy', {
-    userId: DataTypes.INTEGER,
-    gold_amount: DataTypes.INTEGER,
-    // other economy fields
-  });
-  return UserEconomy;
-};

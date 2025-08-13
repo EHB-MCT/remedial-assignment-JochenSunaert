@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
-// The refreshFlag prop is now accepted to trigger data re-fetching
+/**
+ * EconomyTab fetches and displays a user's economy information (gold, elixir, builders, etc.)
+ *
+ * @param {Object} props - Component props
+ * @param {string} props.userId - ID of the user
+ * @param {any} props.refreshFlag - Trigger to re-fetch economy data when changed
+ */
 export default function EconomyTab({ userId, refreshFlag }) {
   const [economy, setEconomy] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -18,15 +24,13 @@ export default function EconomyTab({ userId, refreshFlag }) {
 
     fetch(`/api/economy/status?userId=${userId}`)
       .then(res => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         return res.json();
       })
       .then(data => {
-        // Apply gold pass discount here if needed (or trust backend)
+        // Optionally apply gold pass logic here
         if (data.has_gold_pass) {
-          data.gold_amount = Math.floor(data.gold_amount); // or apply any logic if needed
+          data.gold_amount = Math.floor(data.gold_amount);
         }
         setEconomy(data);
         setLoading(false);
@@ -35,14 +39,13 @@ export default function EconomyTab({ userId, refreshFlag }) {
         setError(err.message);
         setLoading(false);
       });
-  }, [userId, refreshFlag]); // The refreshFlag is added here to trigger a re-render on change
+  }, [userId, refreshFlag]); // Re-run effect when userId or refreshFlag changes
 
   if (loading) return <p>Loading economy data...</p>;
   if (error) return <p>Error loading economy data: {error}</p>;
   if (!economy) return <p>No economy data available.</p>;
 
   const hoursTotal = Math.floor(economy.total_time_seconds / 3600);
-
   const hoursWithBuilders =
     economy.builders_count && economy.builders_count > 0
       ? Math.floor(hoursTotal / economy.builders_count)

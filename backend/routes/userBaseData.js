@@ -1,7 +1,17 @@
+/**
+ * User base data routes
+ * - Read current placed defenses and levels for a user
+ */
+
 const express = require('express');
-const supabase = require('../database/supabaseClient');
+const { supabase } = require('../database/supabaseClient');
+
 const router = express.Router();
 
+/**
+ * List base data for a user (defense instance name + current level).
+ * @route GET /api/user-base-data?userId=...
+ */
 router.get('/', async (req, res) => {
   const userId = req.query.userId;
   if (!userId) {

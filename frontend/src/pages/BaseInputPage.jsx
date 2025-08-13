@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import UserInputForm from '../components/UserInputForm';
+import UserInputForm from '../components/UserInputForm/UserInputForm';
 
 export default function BaseInputPage({ user }) {
   if (!user) {
