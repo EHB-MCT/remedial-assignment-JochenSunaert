@@ -95,6 +95,9 @@ Contributions are welcome! Please read our [Contributing Guidelines](./CONTRIBUT
 
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
 
+## Sources 
+
+for more information or sources of this project, go to the - **[Attributions page](./ATTRIBUTIONS.md)**
 ## Authors
 
 - [@Jochen Sunaert](https://github.com/JochenSunaert)
