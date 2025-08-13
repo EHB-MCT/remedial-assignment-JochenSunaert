@@ -1,72 +1,153 @@
-# Design & Architecture
+# **Design & Architecture**
 
-This document outlines the project's file structure, data flow, and the key design principles that guide its development.
+This document provides an in-depth look at the project's architecture, including the file structure, data flow, and design principles guiding its development.
 
-## File Structure
+---
 
-The project is organized into two primary folders: `backend` and `frontend`.
+## **File Structure**
+
+The project is divided into **backend** (Node.js/Express API with Supabase + Sequelize) and **frontend** (React application).
+It follows **MVC** on the backend and **component-based architecture** on the frontend.
 
 ```
 /
-├── backend                        # The Node.js server and API
-│   ├── controllers                # Contains the business logic for API endpoints
-│   │   └── upgradeController.js   # Logic for handling upgrades and fetching available ones
-│   ├── database                   # Database connection setup
-│   │   └── supabaseClient.js      # Supabase client initialization
-│   ├── models                     # Defines the Sequelize database models
-│   │   ├── Upgrade.js             # Model for a user's in-progress upgrade
-│   │   ├── UserEconomy.js         # Model for user's economy data
-│   │   └── index.js               # Sequelize setup and model imports
-│   ├── routes                     # Defines the API endpoints for the server
-│   │   ├── userEconomy.js         # API for managing economy status and updates
-│   │   ├── userBaseData.js        # API for managing user's base data
-│   │   └── upgrades.js            # Main API for managing user's base data
-│   └── server.js                  # Main Express server entry point
-└── frontend                       # The React frontend application
-    ├── src                        # Main source code for the React app
-    │   ├── components             # Reusable UI components
-    │   │   ├── AvailableUpgrades.jsx  # Displays a list of available upgrades
-    │   │   ├── BaseInput.jsx          # A form component for defense level inputs
-    │   │   ├── EconomyTab.jsx         # Shows the user's current resources and builder count
-    │   │   └── UserInputForm.jsx      # A form to add or update a defense in the base
-    │   ├── pages                  # Top-level components for each view/page
-    │   │   ├── BaseInputPage.jsx      # Page for initial base setup
-    │   │   ├── HomePage.jsx           # Main user dashboard after login
-    │   │   ├── Login.jsx              # User login form
-    │   │   ├── ProfileTab.jsx         # User profile and base management page
-    │   │   ├── SignUp.jsx             # User registration form
-    │   │   ├── UserEconomySettings.jsx # Page to modify user's economy variables
-    │   │   └── index.js               # Exports page components for easy import
-    │   ├── utils                     # Utility functions
-    │   │   └── economyUtiles.js      # Contains functions for economy calculations like discounts
-    │   ├── App.jsx                # The main application component and router
-    │   ├── client.js              # Supabase client setup for the frontend
-    │   └── main.jsx               # The React application's entry point
-    └── ...                        # Other frontend files (index.html, package.json, etc.)
+├── backend                        # Node.js server and API logic
+│   ├── controllers                # Business logic layer, bridges routes and services
+│   │   └── upgradeController.js   # Handles upgrade requests, availability checks, and economy interactions
+│   ├── database                   # Database connection and static data storage
+│   │   ├── tables/defense         # CSV-based defense data for initial imports or reference
+│   │   │   ├── cannon.csv         # Data columns for cannon upgrades in `defense_upgrades` table
+│   │   │   └── ...                # Other defenses (archer tower, wizard tower, etc.)
+│   │   └── supabaseClient.js      # Initializes and exports a Supabase client for DB interactions
+│   ├── models                     # Sequelize models mapping to DB tables
+│   │   ├── Upgrade.js             # Represents an in-progress upgrade (defense type, start/end time, etc.)
+│   │   └── UserEconomy.js         # Stores user's gold, elixir, dark elixir, builder count, gold pass status
+│   ├── repositories               # Data access layer (queries + persistence logic)
+│   │   └── upgradeRepository.js   # Handles all DB reads/writes related to upgrades; throws on hard errors
+│   ├── routes                     # Express routes exposing API endpoints
+│   │   ├── userEconomy.js         # Endpoints for getting/updating user economy state
+│   │   ├── userBaseData.js        # Endpoints for managing defense/base level data
+│   │   ├── economy.js             # Economy utilities (e.g., reset, batch updates)
+│   │   └── upgrades.js            # Endpoints for starting, completing, and listing upgrades
+│   ├── services                   # Application service layer for orchestration + business rules
+│   │   └── upgradeService.js      # Economy calculations, builder availability checks, upgrade validation
+│   ├── utils                      # Backend utility/helper functions
+│   │   ├── economy.js             # Shared economy logic (cost calculations, resource validation)
+│   │   ├── strings.js             # String manipulation + localization helpers
+│   │   └── time.js                # Time-related utilities (upgrade durations, countdowns)
+│   ├── server.js                  # Express app entry point: middleware, routing, error handling
+│   └── .env                       # Environment variables (Supabase keys, port configs, etc.)
+
+└── frontend                       # React SPA for user interaction
+    ├── src
+    │   ├── components             # Reusable, isolated UI pieces
+    │   │   ├── AvailableUpgrades          # Lists current possible upgrades
+    │   │   │   ├── AvailableList.jsx      # Renders upgrade list items
+    │   │   │   ├── AvailableUpgrades.jsx  # Parent component fetching/updating available upgrades
+    │   │   │   ├── InProgressList.jsx     # Displays ongoing upgrades with timers
+    │   │   │   ├── UpgradeItem.jsx        # Displays a single upgrade (cost, time, level)
+    │   │   │   ├── useAvailableItem.js    # Hook for managing available upgrade state
+    │   │   │   └── utils.js               # UI-specific utility functions
+    │   │   ├── BaseInput                  # Town Hall/base defense input form
+    │   │   │   └── BaseInput.jsx          # Controlled input fields for defense levels
+    │   │   ├── EconomyTab                 # Displays resources + builder count
+    │   │   │   └── EconomyTab.jsx         # Fetches and renders user's economy status
+    │   │   ├── UserInputForm              # General form for adding/updating defenses
+    │   │   │   └── UserInputForm.jsx
+    │   │   └── UserEconomySettings        # Economy configuration UI
+    │   │       ├── constants.js           # Static constants (resource names, caps, etc.)
+    │   │       ├── ResourceCard.jsx       # Card component showing single resource
+    │   │       ├── UserEconomySettings.jsx# Parent form for adjusting economy
+    │   │       ├── useUserEconomySettings.js # Hook for economy state handling
+    │   │       └── utils.js               # Utility functions for economy form
+    │   ├── pages                  # Full-screen views
+    │   │   ├── authentication
+    │   │   │   ├── index.js              # Barrel export for auth pages
+    │   │   │   ├── Login.jsx              # Login form UI + Supabase auth calls
+    │   │   │   └── SignUp.jsx             # Registration form UI + Supabase signup calls
+    │   │   ├── BaseInputPage.jsx          # Step for initial defense setup
+    │   │   ├── HomePage.jsx               # Main dashboard after login
+    │   │   └── ProfileTab.jsx             # Displays/upgrades user profile and defenses
+    │   ├── utils
+    │   │   └── economyUtiles.js           # Client-side economy calculations (discounts, capacity checks)
+    │   ├── App.jsx                        # React router + global layout wrapper
+    │   ├── client.js                      # Supabase client initialization for frontend
+    │   └── main.jsx                       # React app entry point
+    └── public / package.json / etc.       # Static assets + frontend configuration
+
+└── docs                       # folder for extra documentations
 ```
 
-## Data Flow
+---
 
-The backend logic is centralized in the `upgradeController.js` file, which is called by the various routes in the `routes` directory. The main flow for an upgrade request is as follows:
+## **Data Flow**
 
-1.  **Frontend Request**: A user clicks to start an upgrade. The React frontend sends a `POST` request to the `/api/user-economy/start-upgrade` endpoint on the Node.js backend.
-2.  **Route Handling**: The `userEconomy.js` route receives the request and calls the `startUpgrade` function from the `upgradeController`.
-3.  **Controller Logic**: The `startUpgrade` function performs the core logic:
-    * It fetches the user's economy data to check for sufficient resources and the gold pass status.
-    * It calculates the final cost, applying a 20% discount if the user has the gold pass.
-    * It deducts the cost from the user's resources and updates the `user_economy` table.
-    * It checks the user's `user_base_data` to see if the defense instance already exists.
-    * If the defense exists, it updates the `current_level` in the `user_base_data` table.
-    * If the defense does not exist (a new one is being built), it inserts a new row into the `user_base_data` table.
-4.  **Response**: The controller sends a JSON response back to the frontend, indicating success or failure.
+**Upgrade initiation example:**
 
-Similarly, the `getAvailableUpgrades` function in the `upgradeController` determines which defenses can be upgraded or built based on the user's current Town Hall level and existing defenses by querying the `user_base_data` and `defense_upgrades` tables.
+1. **User Action (Frontend)**
 
-## Design Patterns & Principles
+   * Player clicks an upgrade button in `AvailableUpgrades.jsx`.
+   * Sends a `POST` request to `/api/user-economy/start-upgrade`.
 
--   **Model-View-Controller (MVC)**: The project's backend follows a clear MVC pattern.
-    -   **Model**: The Sequelize models and database interaction logic.
-    -   **View**: The React frontend serves as the View.
-    -   **Controller**: The Express routes and controller functions (`upgradeController.js`).
--   **Separation of Concerns**: Database connections, API routes, and business logic are all separated into their own dedicated files.
--   **Single Responsibility Principle (SRP)**: Each file and function has a single, well-defined purpose, such as `startUpgrade` focusing only on processing a single upgrade.
+2. **Routing Layer (Backend)**
+
+   * `userEconomy.js` route calls `upgradeController.startUpgrade()`.
+
+3. **Controller Logic**
+
+   * Fetches economy data (`UserEconomy` model via repository).
+   * Checks resource sufficiency & builder availability.
+   * Applies discounts (e.g., Gold Pass -20%).
+   * Deducts resources, updates `user_economy` table.
+   * Updates or inserts into `user_base_data` table (via repository).
+
+4. **Service Layer**
+
+   * `upgradeService.js` calculates final cost, validates rules (e.g., no concurrent same-defense upgrades).
+   * Returns updated state to controller.
+
+5. **Repository Layer**
+
+   * Executes Sequelize queries to persist changes.
+
+6. **Response to Frontend**
+
+   * JSON with success status, updated economy, and in-progress upgrades.
+
+**Available upgrades check:**
+
+* Triggered on dashboard load or after upgrade completion.
+* Queries `user_base_data` + `defense_upgrades` to filter what’s available based on:
+
+  * Town Hall level
+  * Current defense levels
+  * Max levels per TH
+
+---
+
+## **Design Patterns & Principles**
+
+* **MVC (Backend)**:
+
+  * **Model** → Sequelize models.
+  * **View** → Frontend React components (SPA).
+  * **Controller** → `upgradeController.js` + route handlers.
+
+* **Separation of Concerns**:
+
+  * **Backend**: Controllers handle orchestration, repositories handle DB queries, services enforce business rules.
+  * **Frontend**: Components are small, reusable, and state management is handled by hooks.
+
+* **SRP (Single Responsibility Principle)**:
+
+  * Each module handles exactly one responsibility (e.g., `economy.js` only does economy calculations).
+
+* **API-First Design**:
+
+  * All backend logic exposed via RESTful endpoints; frontend only interacts through APIs.
+
+* **Scalability in Mind**:
+
+  * Repositories allow easy swap of DB provider.
+  * Clear separation allows future migration to microservices if needed.
+
