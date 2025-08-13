@@ -16,6 +16,7 @@ An application that simulates a resource-based economy, based on [Clash of clans
 - [Documentation](#documentation)
 - [Contributing](#contributing)
 - [License](#license)
+- [sources](#Sources)
 - [Authors](#authors)
 
 ---
@@ -86,6 +87,9 @@ All detailed project documentation has been moved to the `/docs` folder.
 - **[API Reference](./docs/API_REFERENCE.md)**: A complete reference for all backend API endpoints.
 - **[Conventions & Standards](./docs/CONVENTIONS.md)**: Project conventions for code, naming, and commits.
 - **[Project Roadmap](./docs/ROADMAP.md)**: Future plans and features for the project.
+- **[Attributions](./docs/ATTRIBUTIONS.md)**: use of attributions or sources.
+- **[USE_OF_AI](./docs/ATTRIBUTIONS.md)**: extra information about where AI was used.
+- **[Features](./docs/FEATURES.md)**: extra videos and explenations about the different features.
 
 ## Contributing
 
@@ -97,7 +101,7 @@ This project is licensed under the MIT License. See the [LICENSE](./LICENSE) fil
 
 ## Sources 
 
-for more information or sources of this project, go to the - **[Attributions page](./ATTRIBUTIONS.md)**
+for more information or sources of this project, go to the - **[Attributions page](./docs/ATTRIBUTIONS.md)**
 ## Authors
 
 - [@Jochen Sunaert](https://github.com/JochenSunaert)
