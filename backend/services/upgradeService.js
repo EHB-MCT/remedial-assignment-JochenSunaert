@@ -193,7 +193,7 @@ async function getAvailableUpgrades(userId) {
     const first = allDefenses.find((u) => u.defense_name === defName && u.level === 1);
     if (!first) continue;
 
-    const maxAllowed = first.max_per_town_hall; // assumes column exists in your schema
+    const maxAllowed = first.max_per_town_hall; 
     const currentCount = countByName[defName] || 0;
 
     for (let i = currentCount; i < maxAllowed; i++) {
