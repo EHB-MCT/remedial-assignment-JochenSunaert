@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../client';
-import BaseInput from '../components/BaseInput';
+import BaseInput from '../components/BaseInput/BaseInput';
 
 const DEFENSE_TYPES = [
   'Air Defense',

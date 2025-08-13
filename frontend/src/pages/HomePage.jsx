@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AvailableUpgrades from '../components/AvailableUpgrades/AvailableUpgrades';
-import EconomyTab from "../components/EconomyTab";
+import EconomyTab from "../components/EconomyTab/EconomyTab";
 
 const HomePage = ({ user, setToken, setUser }) => {
   let navigate = useNavigate();

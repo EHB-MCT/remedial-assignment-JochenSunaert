@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { SignUp, Login, HomePage } from "./pages";
+import { SignUp, Login, HomePage } from "./pages/authentication";
 import BaseInputPage from './pages/BaseInputPage';
 import MainPage from "./pages/HomePage";
 import ProfileTab from './pages/ProfileTab'; 
