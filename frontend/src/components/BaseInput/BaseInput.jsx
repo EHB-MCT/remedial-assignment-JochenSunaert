@@ -1,39 +1,25 @@
 import React, { useState, useEffect } from 'react';
 
-const maxInstancesByType = {
-  'Air Defense': 4,
-  'Air Sweeper': 2,
-  'Archer Tower': 10,
-  'Bomb Tower': 2,
-  'Builder Hut': 5,
-  'Cannon': 8,
-  'Eagle Artillery': 1,
-  'Fire Spitter': 2,
-  'Hidden Tesla': 5,
-  'Inferno Tower': 3,
-  'Monolith': 1,
-  'Mortar': 4,
-  'Multi Archer Tower': 2,
-  'Multi Gear Tower': 1,
-  'Ricochet Cannon': 2,
-  'Scattershot': 2,
-  'Spell Tower': 2,
-  'Wizard Tower': 5,
-  'X-Bow': 4,
-  'Town Hall': 1,
-};
-
+/**
+ * BaseInput renders an input group for a specific type of base building/defense.
+ * Supports multiple instances, dynamic adding/removing, and enforces maximum instances.
+ *
+ * @param {Object} props - Component props
+ * @param {string} props.type - Type of building (e.g., "Cannon")
+ * @param {number[]} [props.initialLevels=[]] - Initial levels for pre-population
+ * @param {function} props.onChange - Callback when levels change: `(type, levels) => void`
+ */
 const BaseInput = ({ type, initialLevels = [], onChange }) => {
-  const maxInstances = maxInstancesByType[type] || 10; // default max if not set
+  const maxInstances = maxInstancesByType[type] || 10;
 
-  // Initialize instances from initialLevels or default to one empty instance
+  // Track input values for each instance
   const [instances, setInstances] = useState(
     initialLevels.length > 0
       ? initialLevels.map(level => ({ level: level === 0 ? '' : String(level) }))
       : [{ level: '' }]
   );
 
-  // Sync if initialLevels changes from outside (e.g. on data load)
+  // Sync state when initialLevels changes from parent
   useEffect(() => {
     setInstances(
       initialLevels.length > 0
@@ -66,36 +52,54 @@ const BaseInput = ({ type, initialLevels = [], onChange }) => {
   return (
     <div className="base-input">
       <h3>{type} (max {maxInstances})</h3>
-      {instances.map((instance, index) => (
-        <div key={index} className="instance-row">
-          <label>
-            Level of {type} #{index + 1}:
-            <input
-              type="number"
-              min="1"
-              value={instance.level}
-              onChange={e => handleInstanceChange(index, e.target.value)}
-            />
-          </label>
+      {instances.map((instance, idx) => (
+        <div key={idx} style={{ display: 'flex', marginBottom: '0.5rem' }}>
+          <input
+            type="number"
+            value={instance.level}
+            onChange={(e) => handleInstanceChange(idx, e.target.value)}
+            min="0"
+            max="100"
+            placeholder="Level"
+            style={{ width: '80px', marginRight: '0.5rem' }}
+          />
           {instances.length > 1 && (
-            <button type="button" onClick={() => removeInstance(index)}>
-              Remove
+            <button type="button" onClick={() => removeInstance(idx)}>
+              ❌
             </button>
           )}
         </div>
       ))}
-      <button
-        type="button"
-        onClick={addInstance}
-        disabled={instances.length >= maxInstances}
-      >
-        Add another {type}
-      </button>
-      {instances.length >= maxInstances && (
-        <p style={{ color: 'red' }}>Maximum of {maxInstances} {type}s reached.</p>
+      {instances.length < maxInstances && (
+        <button type="button" onClick={addInstance}>
+          ➕ Add {type}
+        </button>
       )}
     </div>
   );
+};
+
+// Maximum instances allowed per building type
+const maxInstancesByType = {
+  'Town Hall': 1,
+  'Eagle Artillery': 1,
+  'Air Sweeper': 1,
+  'Air Defense': 4,
+  'Cannon': 6,
+  'Archer Tower': 6,
+  'Wizard Tower': 4,
+  'Mortar': 4,
+  'Hidden Tesla': 4,
+  'Inferno Tower': 3,
+  'Multi Archer Tower': 2,
+  'Multi Gear Tower': 2,
+  'Scattershot': 2,
+  'Ricochet Cannon': 2,
+  'Spell Tower': 1,
+  'Fire Spitter': 1,
+  'Monolith': 1,
+  'Builder Hut': 5,
+  'X-Bow': 4,
 };
 
 export default BaseInput;
