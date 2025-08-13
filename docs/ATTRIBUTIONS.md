@@ -17,9 +17,10 @@ This project was made possible by the work of many others. We would like to ackn
 - * **OpenAI ChatGPT** for assistance in code generation, debugging, and documentation refinement.
 - **[More info](./docs/USE_OF_AI.md)**: about the use of ai in this application.
 
-### Guidance
+### database data
 
-* Special thanks to **Everaert Jan** for guidance for this assignment.
+* defense statistics data comes from [Clash of clans wiki](https://clashofclans.fandom.com/wiki/Defensive_Buildings/Home_Village). and is also stored in the `backend/database/tables/defense` folder. Everything is combined into the database to achieve a better end result.
+
 
 ### Documentation & Code Style References
 
@@ -41,3 +42,7 @@ This project was made possible by the work of many others. We would like to ackn
 * [Awesome README](https://github.com/matiassingers/awesome-readme) – collection of high-quality README examples.
 * [How to Write a Good README](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project) – practical tips for making an effective README.
 * [Readme.so](https://readme.so/) – simple tool to help create structured README files.
+
+### Guidance
+
+* Special thanks to **Everaert Jan** for guidance for this assignment.
