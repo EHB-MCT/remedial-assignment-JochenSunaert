@@ -1,6 +1,6 @@
 import Login from './Login';
 import SignUp from './SignUp';
-import HomePage from './HomePage';
+import HomePage from '../HomePage';
 
 
 export { 

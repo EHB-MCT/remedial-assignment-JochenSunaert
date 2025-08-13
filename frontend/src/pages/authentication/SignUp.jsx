@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import '../App.css'
-import { supabase } from '../client'
+import '../../App.css'
+import { supabase } from '../../client'
 import { Link } from 'react-router-dom'
 
 function SignUp() {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { supabase } from '../client';
-import BaseInput from './BaseInput';
+import { supabase } from '../../client';
+import BaseInput from '../BaseInput/BaseInput';
 
 export default function UserInputForm({ user }) {
   const [baseData, setBaseData] = useState({});

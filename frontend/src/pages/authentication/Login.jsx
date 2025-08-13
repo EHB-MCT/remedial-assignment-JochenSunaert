@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import '../App.css'
-import { supabase } from '../client'
+import '../../App.css'
+import { supabase } from '../../client'
 import { Link, useNavigate } from 'react-router-dom'
 
 const Login = ({ setToken, setUser }) => {  // accept setUser as prop too
