@@ -15,7 +15,7 @@ This project was made possible by the work of many others. We would like to ackn
 
 - * This project was built with the assistance of **Gemini**. Its collaborative support was instrumental in debugging, writing, and refining the core logic and user interface.
 - * **OpenAI ChatGPT** for assistance in code generation, debugging, and documentation refinement.
-- **[More info](./docs/USE_OF_AI.md)**: about the use of ai in this application.
+- **[More info](./USE_OF_AI.md)**: about the use of ai in this application.
 
 ### database data
 
