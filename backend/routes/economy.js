@@ -1,7 +1,7 @@
 // economy.js
 const express = require('express');
 const router = express.Router();
-const supabase = require('../database/supabaseClient');
+const { supabase } = require('../database/supabaseClient');
 
 // Helper function
 function stripSuffix(name) {

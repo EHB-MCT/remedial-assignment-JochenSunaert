@@ -1,5 +1,5 @@
 const express = require('express');
-const supabase = require('../database/supabaseClient');
+const { supabase } = require('../database/supabaseClient');
 const router = express.Router();
 const { startUpgrade, completeUpgrade } = require('../controllers/upgradeController');
 
