@@ -121,6 +121,11 @@ npm run dev
 2. **Set Up Your Base** – Go to the **Edit Base** page and enter your Clash of Clans account data (structures and levels). (most important = townhall level).
 3. **Claim Resources** – Collect your starting Gold and Elixir **once** to begin upgrading your base.
 
+### quick test
+
+1. **go to the site** – [click here](https://remedial-assignment-jochen-sunaert.vercel.app/)
+2. **Login into the admin account.**  name: Jochen.sunaert@student.ehb.be  testing password: 12345678
+3. **navigate through the site** – Collect your  Gold and Elixir and do your upgrades!
 
 ## Documentation
 
