@@ -14,7 +14,7 @@ All endpoints are prefixed with `/api`.
 
 ## General Endpoints
 
-### if running local, the server should be at ### `http://localhost:3001`
+### if running local, the server should be at `http://localhost:3001`
 
 ### `GET /api/healthcheck`
 
