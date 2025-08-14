@@ -74,6 +74,7 @@ This project uses a modern JavaScript-based technology stack:
 
 ## Quick Start
 
+### Code 
 To get the project running locally, you'll need Node.js and a Supabase project. For full instructions, see the detailed guide:
 
 **[➡️ See the full Getting Started Guide](./docs/GETTING_STARTED.md)**
@@ -102,6 +103,13 @@ nodemon server.js
 cd frontend
 npm run dev
 ```
+
+### App
+
+1. **Create an Account** – Sign up with your email and password.
+2. **Set Up Your Base** – Go to the **Edit Base** page and enter your Clash of Clans account data (structures and levels). (most important = townhall level)
+3. **Claim Resources** – Collect your starting Gold and Elixir **once** to begin upgrading your base.
+
 
 ## Documentation
 
