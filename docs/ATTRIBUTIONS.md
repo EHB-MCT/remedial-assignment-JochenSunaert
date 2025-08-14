@@ -24,7 +24,7 @@ This project was made possible by the work of many others. We would like to ackn
 
 ### Documentation & Code Style References
 
-* [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html) – for consistent JavaScript coding practices.
+
 * [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) – widely adopted JavaScript/React style guide.
 * [Markdown Guide](https://www.markdownguide.org/) – for structuring and styling Markdown files.
 * [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) – for writing clear and structured commit messages.
