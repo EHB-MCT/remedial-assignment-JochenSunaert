@@ -6,8 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/upgrades': 'http://localhost:3001', // replace with your backend URL & port
-      '/api': 'http://localhost:3001'
+      '/upgrades': 'https://remedial-assignment-jochensunaert.onrender.com', 
+      '/api': 'https://remedial-assignment-jochensunaert.onrender.com'
     },
   },
 });
