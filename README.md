@@ -31,12 +31,38 @@ This project is a web-based simulation of a Clash of Clans-style economy. The us
 
 ## Features
 
-- **User Authentication**: Secure user login and registration using Supabase.
-- **Dynamic Base Management**: Users can recreate, update, and manage their in-game base layout by adding and leveling up various defensive structures.
-- **Simulated Economy**: Users receive currency (gold and elixer) based on time. and can select their builder count, and their gold pass status.
-- **Upgrade System**: Users can view available upgrades for their defenses and initiate them, with costs and timers calculated using the [Clash of clans wiki](https://clashofclans.fandom.com/wiki/Defensive_Buildings/Home_Village).
-- **Real-time Data Persistence**: All user and economy data is stored persistently in a Supabase database.
-- **Responsive UI**: A modular React frontend designed for a seamless user experience.
+for a more detailed list, **[➡️ See the full feature list](./docs/FEATURES.md)**
+
+### **Account Management**
+
+* **Sign-up**: Create a new account with email and password. Email verification is required.
+* **Log-in/Log-out**: Securely access and exit your account.
+* **Session Persistence**: Your user data and session token are saved locally for a seamless experience.
+
+
+
+### **Base & Profile**
+
+* **Edit Base**: You can add or remove defense structures and set their levels.
+* **Data Persistence**: All changes to your base are saved in your profile.
+
+
+
+### **Economy**
+
+* **Resource Collection**: Collect Gold and Elixir, up to a set maximum capacity.
+* **Gold Pass**: Toggle a Gold Pass for a **20% discount** on upgrade costs and times.
+* **Builder Management**: Set the number of builders you have available for upgrades.
+* **Offline Production**: The app calculates and credits you with resources produced while you were away.
+
+
+
+### **Upgrades**
+
+* **In-Progress Upgrades**: View a list of your current upgrades with a live countdown.
+* **Available Upgrades**: See a list of all upgrades you can currently afford, including new structures you can build.
+* **Start Upgrade**: Begin a new upgrade after verifying you have the required resources and an available builder.
+* **Complete Upgrade**: Finish an upgrade to update your base and free up your builder.
 
 ## Technologies
 
