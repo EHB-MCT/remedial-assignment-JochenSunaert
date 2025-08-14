@@ -19,7 +19,7 @@ export default function InProgressList({ inProgress = [] }) {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 gridalign-inprogress">
       {inProgress.map((upg) => (
         <div key={upg.id} className="p-4 bg-white rounded-lg shadow-md border-l-4 border-indigo-500">
           <div className="flex justify-between items-center">
