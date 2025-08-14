@@ -102,6 +102,7 @@ npm install
 
 # Set up your .env file in /backend, and the /client.js file in the /frontend/src then start the servers
 # (in two separate terminals)
+# For these files, or for a more detailed setup refer to the full getting started guide
 
 # Terminal 1: Backend
 cd backend
@@ -115,7 +116,7 @@ npm run dev
 ### App
 
 1. **Create an Account** – Sign up with your email and password.
-2. **Set Up Your Base** – Go to the **Edit Base** page and enter your Clash of Clans account data (structures and levels). (most important = townhall level)
+2. **Set Up Your Base** – Go to the **Edit Base** page and enter your Clash of Clans account data (structures and levels). (most important = townhall level).
 3. **Claim Resources** – Collect your starting Gold and Elixir **once** to begin upgrading your base.
 
 
@@ -143,10 +144,10 @@ This project is licensed under the MIT License. See the [LICENSE](./LICENSE) fil
 
 ## Sources 
 
-for more information or sources of this project, go to the - **[Attributions page](./docs/ATTRIBUTIONS.md)**
+for more information or sources of this project, go to the - **[Attributions page](./docs/ATTRIBUTIONS.md)**.
 ## Authors
 
-- [@Jochen Sunaert](https://github.com/JochenSunaert)
+- [@Jochen Sunaert](https://github.com/JochenSunaert).
 
 ### Guidance
 - Special thanks to **Everaert Jan** for guidance for this assignment.
