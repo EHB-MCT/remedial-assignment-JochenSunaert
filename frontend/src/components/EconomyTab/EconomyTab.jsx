@@ -22,7 +22,7 @@ export default function EconomyTab({ userId, refreshFlag }) {
     setLoading(true);
     setError(null);
 
-    fetch(`/api/economy/status?userId=${userId}`)
+    fetch(`https://remedial-assignment-jochensunaert.onrender.com/api/economy/status?userId=${userId}`)
       .then(res => {
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         return res.json();
