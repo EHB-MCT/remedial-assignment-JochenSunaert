@@ -1,6 +1,14 @@
 # Clash of clans Web Simulation: A Resource Management Game
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=black)](https://reactjs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=flat&logo=supabase&logoColor=white)](https://supabase.com/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)](https://www.javascript.com/)
+[![Game: Clash of Clans Simulation](https://img.shields.io/badge/Game-Clash%20of%20Clans-blue?style=flat)](https://supercell.com/en/games/clashofclans/)
+[![Data Source: CoC Wiki](https://img.shields.io/badge/Data%20Source-Clash%20of%20Clans%20Wiki-lightgrey?style=flat)](https://clashofclans.fandom.com/wiki/Defensive_Buildings/Home_Village)
+[![Full-Stack](https://img.shields.io/badge/Full--Stack-Yes-brightgreen?style=flat)]()
+[![Web App](https://img.shields.io/badge/Web%20App-Online-orange?style=flat)]()
 
 
 An application that simulates a resource-based economy, based on [Clash of clans](https://supercell.com/en/games/clashofclans/) focusing on the management of defensive structures and user-driven upgrades. This is a full-stack web application with a **React frontend** and a **Node.js backend**, using a persistent **Supabase database** to track user progress, resources, and building levels.
@@ -31,12 +39,38 @@ This project is a web-based simulation of a Clash of Clans-style economy. The us
 
 ## Features
 
-- **User Authentication**: Secure user login and registration using Supabase.
-- **Dynamic Base Management**: Users can recreate, update, and manage their in-game base layout by adding and leveling up various defensive structures.
-- **Simulated Economy**: Users receive currency (gold and elixer) based on time. and can select their builder count, and their gold pass status.
-- **Upgrade System**: Users can view available upgrades for their defenses and initiate them, with costs and timers calculated using the [Clash of clans wiki](https://clashofclans.fandom.com/wiki/Defensive_Buildings/Home_Village).
-- **Real-time Data Persistence**: All user and economy data is stored persistently in a Supabase database.
-- **Responsive UI**: A modular React frontend designed for a seamless user experience.
+for a more detailed list, **[➡️ See the full feature list](./docs/FEATURES.md)**
+
+### **Account Management**
+
+* **Sign-up**: Create a new account with email and password. Email verification is required.
+* **Log-in/Log-out**: Securely access and exit your account.
+* **Session Persistence**: Your user data and session token are saved locally for a seamless experience.
+
+
+
+### **Base & Profile**
+
+* **Edit Base**: You can add or remove defense structures and set their levels.
+* **Data Persistence**: All changes to your base are saved in your profile.
+
+
+
+### **Economy**
+
+* **Resource Collection**: Collect Gold and Elixir, up to a set maximum capacity.
+* **Gold Pass**: Toggle a Gold Pass for a **20% discount** on upgrade costs and times.
+* **Builder Management**: Set the number of builders you have available for upgrades.
+* **Offline Production**: The app calculates and credits you with resources produced while you were away.
+
+
+
+### **Upgrades**
+
+* **In-Progress Upgrades**: View a list of your current upgrades with a live countdown.
+* **Available Upgrades**: See a list of all upgrades you can currently afford, including new structures you can build.
+* **Start Upgrade**: Begin a new upgrade after verifying you have the required resources and an available builder.
+* **Complete Upgrade**: Finish an upgrade to update your base and free up your builder.
 
 ## Technologies
 
@@ -48,6 +82,7 @@ This project uses a modern JavaScript-based technology stack:
 
 ## Quick Start
 
+### Code 
 To get the project running locally, you'll need Node.js and a Supabase project. For full instructions, see the detailed guide:
 
 **[➡️ See the full Getting Started Guide](./docs/GETTING_STARTED.md)**
@@ -67,6 +102,7 @@ npm install
 
 # Set up your .env file in /backend, and the /client.js file in the /frontend/src then start the servers
 # (in two separate terminals)
+# For these files, or for a more detailed setup refer to the full getting started guide
 
 # Terminal 1: Backend
 cd backend
@@ -76,6 +112,13 @@ nodemon server.js
 cd frontend
 npm run dev
 ```
+
+### App
+
+1. **Create an Account** – Sign up with your email and password.
+2. **Set Up Your Base** – Go to the **Edit Base** page and enter your Clash of Clans account data (structures and levels). (most important = townhall level).
+3. **Claim Resources** – Collect your starting Gold and Elixir **once** to begin upgrading your base.
+
 
 ## Documentation
 
@@ -101,10 +144,10 @@ This project is licensed under the MIT License. See the [LICENSE](./LICENSE) fil
 
 ## Sources 
 
-for more information or sources of this project, go to the - **[Attributions page](./docs/ATTRIBUTIONS.md)**
+for more information or sources of this project, go to the - **[Attributions page](./docs/ATTRIBUTIONS.md)**.
 ## Authors
 
-- [@Jochen Sunaert](https://github.com/JochenSunaert)
+- [@Jochen Sunaert](https://github.com/JochenSunaert).
 
 ### Guidance
 - Special thanks to **Everaert Jan** for guidance for this assignment.

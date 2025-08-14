@@ -62,28 +62,30 @@ function SignUp() {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          name="fullName"
-          placeholder="Full Name"
-          onChange={handleChange}
-        />
-        <input
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-        />
-        <input
-          name="password"
-          placeholder="Password"
-          type="password"
-          onChange={handleChange}
-        />
-        <button type="submit">Submit</button>
-      </form>
-      Already have an account? <Link to="/">Login</Link>
-    </div>
+<div className="auth-container">
+  <div className="auth-card">
+    <form onSubmit={handleSubmit}>
+      <input
+        name="fullName"
+        placeholder="Full Name"
+        onChange={handleChange}
+      />
+      <input
+        name="email"
+        placeholder="Email"
+        onChange={handleChange}
+      />
+      <input
+        name="password"
+        placeholder="Password"
+        type="password"
+        onChange={handleChange}
+      />
+      <button type="submit">Submit</button>
+    </form>
+    <p>Already have an account? <Link to="/">Login</Link></p>
+  </div>
+</div>
   );
 }
 

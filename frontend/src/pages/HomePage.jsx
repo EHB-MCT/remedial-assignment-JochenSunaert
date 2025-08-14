@@ -65,20 +65,12 @@ const HomePage = ({ user, setToken, setUser }) => {
   const userId = user?.id;
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-semibold mb-4">
-        Welcome to the Home Page, {user?.user_metadata?.fullName || "User"}
-      </h1>
+    <div className="p-6 inpgrogress-upgrades-container">
 
       {/* Primary actions */}
-      <div className="flex items-center gap-3 mb-4">
-        <button onClick={handleLogout} className="px-3 py-1 bg-red-500 text-white rounded">
-          Logout
-        </button>
+      <div className="nav">
 
-        <Link to="/base-input" className="text-blue-600 underline">
-          Make your base
-        </Link>
+
 
         <Link to="/profile" className="text-blue-600 underline">
           Edit Your Profile / Base
@@ -90,7 +82,16 @@ const HomePage = ({ user, setToken, setUser }) => {
         >
           Edit User Economy Settings
         </button>
+
+          <button onClick={handleLogout} className="px-3 py-1 bg-red-500 text-white rounded">
+          Logout
+        </button>
       </div>
+
+      <h1 className="text-2xl font-semibold mb-4">
+        Welcome to the CoC Simulator, {user?.user_metadata?.fullName || "User"}
+      </h1>
+
 
       {/* Economy overview: receives the refreshFlag and should refetch when it changes */}
       <EconomyTab userId={userId} refreshFlag={economyRefreshCounter} />
@@ -103,7 +104,7 @@ const HomePage = ({ user, setToken, setUser }) => {
         <p className="mt-4 text-sm text-gray-600">Please log in to see your upgrades.</p>
       )}
 
-      <div className="mt-6 text-sm">
+      <div className="mt-6 text-sm defense-addition">
         Need to add a defense? <Link to="/profile" className="text-blue-600 underline">Click here</Link>
       </div>
     </div>

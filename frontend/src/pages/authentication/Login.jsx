@@ -68,23 +68,26 @@ const Login = ({ setToken, setUser }) => {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-        />
-        <input
-          name="password"
-          placeholder="Password"
-          type="password"
-          onChange={handleChange}
-        />
-        <button type="submit">Submit</button>
-      </form>
-      Don't have an account? <Link to="/signup">Sign Up</Link>
-    </div>
+<div className="auth-container">
+  <div className="auth-card">
+    <form onSubmit={handleSubmit}>
+      <input
+        name="email"
+        placeholder="Email"
+        onChange={handleChange}
+      />
+      <input
+        name="password"
+        placeholder="Password"
+        type="password"
+        onChange={handleChange}
+      />
+      <button type="submit">Submit</button>
+    </form>
+    <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
+  </div>
+</div>
+
   );
 };
 

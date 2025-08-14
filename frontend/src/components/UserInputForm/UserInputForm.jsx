@@ -78,6 +78,7 @@ export default function UserInputForm({ user }) {
       <h2>Set up your base</h2>
 
       {/* Render BaseInput for each type of defense/building */}
+      <BaseInput type="Town Hall" onChange={handleBaseChange} />
       <BaseInput type="Air Defense" onChange={handleBaseChange} />
       <BaseInput type="Air Sweeper" onChange={handleBaseChange} />
       <BaseInput type="Archer Tower" onChange={handleBaseChange} />
@@ -97,7 +98,7 @@ export default function UserInputForm({ user }) {
       <BaseInput type="Spell Tower" onChange={handleBaseChange} />
       <BaseInput type="Wizard Tower" onChange={handleBaseChange} />
       <BaseInput type="X-Bow" onChange={handleBaseChange} />
-      <BaseInput type="Town Hall" onChange={handleBaseChange} />
+
 
       <button type="submit" disabled={isSaving} style={{ marginTop: '1rem' }}>
         {isSaving ? 'Saving...' : 'Save Base'}

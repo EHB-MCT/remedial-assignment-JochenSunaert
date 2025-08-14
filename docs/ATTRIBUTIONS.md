@@ -13,8 +13,8 @@ This project was made possible by the work of many others. We would like to ackn
 
 ### AI Development Assistance
 
-- * This project was built with the assistance of **Gemini**. Its collaborative support was instrumental in debugging, writing, and refining the core logic and user interface.
-- * **OpenAI ChatGPT** for assistance in code generation, debugging, and documentation refinement.
+ * This project was built with the assistance of **Gemini**. Its collaborative support was instrumental in debugging, writing, and refining the core logic and user interface.
+* **OpenAI ChatGPT** for assistance in code generation, debugging, and documentation refinement.
 - **[More info](./USE_OF_AI.md)**: about the use of ai in this application.
 
 ### database data
@@ -24,7 +24,7 @@ This project was made possible by the work of many others. We would like to ackn
 
 ### Documentation & Code Style References
 
-* [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html) – for consistent JavaScript coding practices.
+
 * [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) – widely adopted JavaScript/React style guide.
 * [Markdown Guide](https://www.markdownguide.org/) – for structuring and styling Markdown files.
 * [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) – for writing clear and structured commit messages.

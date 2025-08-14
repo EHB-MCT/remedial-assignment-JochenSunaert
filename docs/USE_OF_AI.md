@@ -11,7 +11,7 @@ AI was used as a **development assistant**, helping with coding, debugging, arch
 * **Provider**: OpenAI
 * **Model**: GPT-5 (code & design assistance)
 * **Interaction Mode**: Conversational prompt-response
-
+---
 * **Provider**: Gemeni
 * **Model**: 2.5
 * **Interaction Mode**: Conversational prompt-response

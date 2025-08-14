@@ -1,4 +1,4 @@
-# Getting Started (updated)
+# Getting Started 
 
 Follow these steps to get the project running locally.
 

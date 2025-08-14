@@ -17,6 +17,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../client';
 import BaseInput from '../components/BaseInput/BaseInput';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * Ordered list of defense types that the UI renders.
@@ -58,6 +59,8 @@ export default function ProfileTab({ user }) {
   //   "Mortar": [3],         // mortar #1 = level 3
   //   ...
   // }
+
+   const navigate = useNavigate();
   const [baseData, setBaseData] = useState({});
 
   // Status and UI state
@@ -190,7 +193,7 @@ export default function ProfileTab({ user }) {
   if (loading) return <p>Loading base data...</p>;
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} class="form">
       <h2>Your Base Profile</h2>
 
       {/* Render one BaseInput per defense type.
@@ -207,6 +210,12 @@ export default function ProfileTab({ user }) {
       <button type="submit" disabled={isSaving} style={{ marginTop: '1rem' }}>
         {isSaving ? 'Saving...' : 'Save Base'}
       </button>
+              <button
+          onClick={() => navigate("/home")}
+          className="px-3 py-1 bg-indigo-600 text-white rounded"
+        >
+          home
+        </button>
 
       {/* Status message area: success or error feedback */}
       {statusMessage && <p>{statusMessage}</p>}
