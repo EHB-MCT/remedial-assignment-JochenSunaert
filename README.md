@@ -1,6 +1,14 @@
 # Clash of clans Web Simulation: A Resource Management Game
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=black)](https://reactjs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=flat&logo=supabase&logoColor=white)](https://supabase.com/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)](https://www.javascript.com/)
+[![Game: Clash of Clans Simulation](https://img.shields.io/badge/Game-Clash%20of%20Clans-blue?style=flat)](https://supercell.com/en/games/clashofclans/)
+[![Data Source: CoC Wiki](https://img.shields.io/badge/Data%20Source-Clash%20of%20Clans%20Wiki-lightgrey?style=flat)](https://clashofclans.fandom.com/wiki/Defensive_Buildings/Home_Village)
+[![Full-Stack](https://img.shields.io/badge/Full--Stack-Yes-brightgreen?style=flat)]()
+[![Web App](https://img.shields.io/badge/Web%20App-Online-orange?style=flat)]()
 
 
 An application that simulates a resource-based economy, based on [Clash of clans](https://supercell.com/en/games/clashofclans/) focusing on the management of defensive structures and user-driven upgrades. This is a full-stack web application with a **React frontend** and a **Node.js backend**, using a persistent **Supabase database** to track user progress, resources, and building levels.
