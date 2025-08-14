@@ -35,7 +35,7 @@ export default function useAvailableUpgrades(userId) {
   const fetchInProgress = useCallback(async () => {
     setLoadingInProgress(true);
     try {
-      const res = await fetch(`/api/upgrades?userId=${userId}`);
+      const res = await fetch(`https://remedial-assignment-jochensunaert.onrender.com/api/upgrades?userId=${userId}`);
       if (!res.ok) throw new Error(`Failed to fetch in-progress upgrades: ${res.status}`);
       const data = await res.json();
 
@@ -60,7 +60,7 @@ export default function useAvailableUpgrades(userId) {
   const fetchAvailable = useCallback(async () => {
     setLoadingUpgrades(true);
     try {
-      const res = await fetch(`/api/upgrades/available?userId=${userId}`);
+      const res = await fetch(`https://remedial-assignment-jochensunaert.onrender.com/api/upgrades/available?userId=${userId}`);
       if (!res.ok) throw new Error(`Failed to fetch available upgrades: ${res.status}`);
       const data = await res.json();
       if (isMounted.current) setUpgrades(data);
@@ -76,7 +76,7 @@ export default function useAvailableUpgrades(userId) {
   const fetchEconomy = useCallback(async () => {
     setLoadingEconomy(true);
     try {
-      const res = await fetch(`/api/user-economy/${userId}`);
+      const res = await fetch(`https://remedial-assignment-jochensunaert.onrender.com/api/user-economy/${userId}`);
       if (!res.ok) throw new Error(`Failed to fetch economy: ${res.status}`);
       const data = await res.json();
       if (isMounted.current) setEconomy(data);
@@ -118,7 +118,7 @@ export default function useAvailableUpgrades(userId) {
     }
 
     try {
-      const res = await fetch('/api/user-economy/start-upgrade', {
+      const res = await fetch('https://remedial-assignment-jochensunaert.onrender.com/api/user-economy/start-upgrade', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -149,7 +149,7 @@ export default function useAvailableUpgrades(userId) {
     if (!toComplete || toComplete.length === 0) return;
     try {
       await Promise.all(toComplete.map(async (u) => {
-        const res = await fetch('/api/user-economy/complete', {
+        const res = await fetch('https://remedial-assignment-jochensunaert.onrender.com/api/user-economy/complete', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
