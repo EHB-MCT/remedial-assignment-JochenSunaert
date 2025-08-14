@@ -15,6 +15,9 @@
 
 An application that simulates a resource-based economy, based on [Clash of clans](https://supercell.com/en/games/clashofclans/) focusing on the management of defensive structures and user-driven upgrades. This is a full-stack web application with a **React frontend** and a **Node.js backend**, using a persistent **Supabase database** to track user progress, resources, and building levels.
 
+## Live Demo
+You can view the live project here: [CoC Web Simulation](https://remedial-assignment-jochen-sunaert.vercel.app)
+
 ---
 
 ## Table of Contents
